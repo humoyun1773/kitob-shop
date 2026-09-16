@@ -90,7 +90,7 @@ export const HomePage: React.FC = () => {
               animate="visible"
               className="lg:col-span-7 space-y-6 text-center lg:text-left"
             >
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-amber-700 dark:text-[#F59E0B] text-xs font-semibold shadow-sm">
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-badge text-amber-700 dark:text-[#F59E0B] text-xs font-semibold shadow-sm">
                 <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                 <span>{t.hero.badge}</span>
               </motion.div>
@@ -230,17 +230,33 @@ export const HomePage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {categories.map(c => (
+          {categories.map((c, idx) => (
             <motion.button
               key={c.name}
-              whileHover={{ scale: 1.04, y: -4 }}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{
+                y: -6,
+                scale: 1.04,
+                transition: { type: 'spring', stiffness: 360, damping: 22 },
+              }}
               whileTap={{ scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               onClick={() => navigate(`/books?category=${encodeURIComponent(c.name)}`)}
-              className={`p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-br ${c.bg} text-left transition-all duration-300 shadow-sm flex flex-col justify-between group`}
+              className="relative glass-card p-5 rounded-2xl text-left overflow-hidden group"
             >
-              <div className="text-3xl mb-3 group-hover:scale-125 transition-transform duration-300">{c.icon}</div>
-              <div>
+              {/* Glass highlight on top */}
+              <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/25 dark:from-white/[0.06] to-transparent rounded-t-2xl pointer-events-none" />
+              <motion.div
+                className="text-3xl mb-3 relative z-10"
+                animate={{ scale: 1 }}
+                whileHover={{ scale: 1.3, rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.4 }}
+              >
+                {c.icon}
+              </motion.div>
+              <div className="relative z-10">
                 <h4 className="font-serif font-bold text-sm text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition">
                   {c.label}
                 </h4>
@@ -354,7 +370,11 @@ export const HomePage: React.FC = () => {
 
       {/* 43. RECOMMENDATION ENGINE (Requirement #6, #43) */}
       <section className="py-16 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-amber-500/10 via-rose-500/5 to-purple-500/10 border border-amber-500/20 shadow-sm">
+        <div className="relative glass-card p-5 sm:p-10 rounded-2xl sm:rounded-3xl overflow-hidden">
+          {/* Glossy highlight */}
+          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/20 dark:from-white/[0.05] to-transparent rounded-t-2xl sm:rounded-t-3xl pointer-events-none" />
+          {/* Gold ambient glow */}
+          <div className="absolute -top-10 left-1/4 w-64 h-32 bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 mb-1">

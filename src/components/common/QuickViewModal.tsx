@@ -43,13 +43,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md" onClick={onClose}>
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9, y: 16 }}
+        initial={{ opacity: 0, scale: 0.88, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 16 }}
-        transition={{ type: "spring", stiffness: 420, damping: 28 }}
-        className="relative w-full max-w-3xl bg-white dark:bg-[#1E293B] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden"
+        exit={{ opacity: 0, scale: 0.88, y: 20 }}
+        transition={{ type: "spring", stiffness: 380, damping: 28 }}
+        className="relative w-full max-w-3xl glass-surface rounded-3xl shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Close Button */}

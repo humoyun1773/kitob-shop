@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Heart, ShoppingBag, Eye, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Book } from '../../types/book';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
@@ -58,25 +58,51 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      whileHover={{ y: -6 }}
+      initial={{ opacity: 0, y: 24, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{
+        y: -8,
+        scale: 1.02,
+        transition: { type: 'spring', stiffness: 340, damping: 22 },
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white dark:bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/90 dark:border-slate-700/70 hover:border-[#F59E0B] dark:hover:border-[#F59E0B]/60 shadow-sm hover:shadow-xl dark:shadow-md dark:hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
+      className="group relative glass-card rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 flex flex-col justify-between overflow-hidden"
     >
-      {/* Top Cover Image Container */}
-      <div className="relative aspect-[3/4] w-full rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-2 sm:mb-3.5 shadow-inner">
+      {/* Glossy top highlight */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 dark:from-white/[0.06] to-transparent rounded-t-2xl sm:rounded-t-3xl z-[1]" />
+
+      {/* Liquid shimmer sweep on hover */}
+      <div
+        className={`pointer-events-none absolute inset-0 z-[2] transition-opacity duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl">
+          <motion.div
+            initial={{ x: '-120%' }}
+            animate={isHovered ? { x: '220%' } : { x: '-120%' }}
+            transition={{ duration: 0.7, ease: 'easeInOut' }}
+            className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 dark:via-white/10 to-transparent -skew-x-12"
+          />
+        </div>
+      </div>
+
+      {/* Cover Image */}
+      <div className="relative aspect-[3/4] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100/80 dark:bg-slate-800/60 mb-2 sm:mb-3.5">
         <Link to={`/books/${book.id}`}>
-          <img
+          <motion.img
             src={book.coverImage}
             alt={book.title}
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="w-full h-full object-cover object-center"
+            animate={{ scale: isHovered ? 1.07 : 1 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
+              (e.target as HTMLImageElement).src =
+                'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
             }}
           />
         </Link>
@@ -84,68 +110,75 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
         {/* Badges */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 pointer-events-none">
           {book.discount && book.discount > 0 ? (
-            <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-500 text-white shadow-sm">
+            <span className="glass-badge px-2.5 py-0.5 rounded-full text-[11px] font-bold text-rose-600 dark:text-rose-400">
               -{book.discount}%
             </span>
           ) : null}
           {book.isBestseller && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F59E0B] text-[#0F172A] uppercase tracking-wider shadow-sm">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F59E0B] text-[#0F172A] uppercase tracking-wider shadow-lg shadow-amber-500/30">
               Bestseller
             </span>
           )}
           {book.isNewArrival && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white uppercase tracking-wider shadow-sm">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white uppercase tracking-wider shadow-sm">
               Yangi
             </span>
           )}
         </div>
 
-        {/* Shine sweep reflection on hover */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-          <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 dark:via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out" />
-        </div>
-
         {/* Wishlist Button */}
         <motion.button
-          whileTap={{ scale: 1.35 }}
+          whileTap={{ scale: 1.4 }}
+          whileHover={{ scale: 1.15 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           onClick={handleWishlistClick}
-          className={`absolute top-2.5 right-2.5 p-2 rounded-full backdrop-blur-md transition-colors duration-200 z-20 ${
+          className={`absolute top-2.5 right-2.5 p-2 rounded-full z-20 transition-colors duration-200 ${
             inWishlist
-              ? 'bg-rose-500 text-white shadow-md'
-              : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-900 hover:text-rose-500 shadow-sm'
+              ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/40'
+              : 'glass bg-white/70 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 hover:text-rose-500'
           }`}
           title={inWishlist ? "Saralanganlardan o'chirish" : "Saralanganlarga qo'shish"}
         >
           <Heart className={`w-4 h-4 ${inWishlist ? 'fill-white' : ''}`} />
         </motion.button>
 
-        {/* Quick View Button Hover Overlay */}
-        <div
-          className={`absolute inset-0 bg-black/30 backdrop-blur-[2px] flex items-center justify-center transition-opacity duration-200 z-10 ${
-            isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <button
-            onClick={handleQuickViewClick}
-            className="px-3.5 py-2 rounded-xl bg-white/95 text-slate-900 font-semibold text-xs shadow-lg hover:bg-white flex items-center gap-1.5 transform hover:scale-105 transition active:scale-95"
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>{t.bookCard.quickView}</span>
-          </button>
-        </div>
+        {/* Quick View Overlay */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="absolute inset-0 bg-black/30 backdrop-blur-[3px] flex items-center justify-center z-10"
+            >
+              <motion.button
+                initial={{ scale: 0.82, y: 8 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.82, y: 8 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                onClick={handleQuickViewClick}
+                className="glass-pill px-4 py-2 rounded-full text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-1.5"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>{t.bookCard.quickView}</span>
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Out of stock tag */}
+        {/* Out of stock */}
         {book.stock <= 0 && (
-          <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-20">
-            <span className="px-3 py-1 bg-slate-800 text-slate-200 text-xs font-bold rounded-lg border border-slate-700">
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-20">
+            <span className="glass-pill px-3 py-1 text-slate-200 text-xs font-bold rounded-lg">
               {t.bookCard.outOfStock}
             </span>
           </div>
         )}
       </div>
 
-      {/* Book Information */}
-      <div className="flex-1 flex flex-col justify-between">
+      {/* Book Info */}
+      <div className="relative flex-1 flex flex-col justify-between z-[3]">
         <div>
           <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
             <span className="uppercase tracking-wider font-semibold text-[10px] text-amber-600 dark:text-amber-400">
@@ -159,7 +192,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           </div>
 
           <Link to={`/books/${book.id}`}>
-            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-xs sm:text-[15px] sm:text-base line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug tracking-tight">
+            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-xs sm:text-[15px] line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug tracking-tight">
               {book.title}
             </h3>
           </Link>
@@ -169,51 +202,66 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           </p>
         </div>
 
-        {/* Price & Add to Cart button */}
-        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-1.5 sm:gap-2">
-          <div>
-            <div className="flex items-baseline gap-1 sm:gap-1.5">
-              <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white tracking-tight">
-                ${book.price.toFixed(2)}
+        {/* Price & Cart Button */}
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-3 border-t border-white/40 dark:border-white/[0.07] flex items-center justify-between gap-1.5 sm:gap-2">
+          <div className="flex items-baseline gap-1 sm:gap-1.5">
+            <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white tracking-tight">
+              ${book.price.toFixed(2)}
+            </span>
+            {book.oldPrice && (
+              <span className="text-[10px] sm:text-xs text-slate-400 line-through">
+                ${book.oldPrice.toFixed(2)}
               </span>
-              {book.oldPrice && (
-                <span className="text-[10px] sm:text-xs text-slate-400 line-through">
-                  ${book.oldPrice.toFixed(2)}
-                </span>
-              )}
-            </div>
+            )}
           </div>
 
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.93 }}
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 20 }}
             onClick={handleAddToCart}
             disabled={book.stock <= 0}
-            className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
+            className={`relative overflow-hidden p-1.5 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
               isAddedAnim
-                ? 'bg-emerald-500 text-white scale-95'
+                ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
                 : inCart
-                ? 'bg-[#F59E0B]/15 text-amber-800 dark:bg-[#F59E0B]/20 dark:text-[#F59E0B]'
-                : 'bg-[#F59E0B] text-[#0F172A] hover:bg-amber-400 font-bold shadow-md shadow-[#F59E0B]/20'
+                ? 'bg-[#F59E0B]/15 text-amber-800 dark:bg-[#F59E0B]/20 dark:text-[#F59E0B] border border-amber-400/30'
+                : 'bg-[#F59E0B] text-[#0F172A] hover:bg-amber-400 font-bold shadow-md shadow-[#F59E0B]/25 hover:shadow-lg hover:shadow-[#F59E0B]/35'
             } disabled:opacity-50 disabled:cursor-not-allowed`}
             title={inCart ? t.bookCard.inCart : t.bookCard.addToCart}
           >
-            {isAddedAnim ? (
-              <>
-                <Check className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Qo'shildi</span>
-              </>
-            ) : (
-              <>
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">
-                  {inCart ? t.bookCard.inCart : t.bookCard.addToCart}
-                </span>
-              </>
-            )}
+            <AnimatePresence mode="wait">
+              {isAddedAnim ? (
+                <motion.span
+                  key="check"
+                  initial={{ scale: 0, rotate: -30 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ scale: 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 20 }}
+                  className="flex items-center gap-1.5"
+                >
+                  <Check className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Qo'shildi</span>
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="bag"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  className="flex items-center gap-1.5"
+                >
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">
+                    {inCart ? t.bookCard.inCart : t.bookCard.addToCart}
+                  </span>
+                </motion.span>
+              )}
+            </AnimatePresence>
           </motion.button>
         </div>
       </div>
     </motion.div>
   );
 };
+
+

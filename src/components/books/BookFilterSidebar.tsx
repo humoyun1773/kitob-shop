@@ -43,7 +43,7 @@ export const BookFilterSidebar: React.FC<BookFilterSidebarProps> = ({
   ];
 
   return (
-    <aside className="bg-white dark:bg-[#1E293B] p-5 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm dark:shadow-md space-y-6">
+    <aside className="glass-card p-5 rounded-3xl shadow-sm space-y-6">
       <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4 text-amber-500" />
