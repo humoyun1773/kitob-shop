@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -13,6 +13,31 @@
     --bg-primary: #0f1117;
     --bg-card: #181c24;
     --border-color: #262c3a;
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "kern";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    letter-spacing: -0.012em;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  .font-serif {
+    letter-spacing: -0.015em;
   }
 }
 

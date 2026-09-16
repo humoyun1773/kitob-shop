@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Heart, ShoppingBag, Eye, Check } from 'lucide-react';
 import { Book } from '../../types/book';
@@ -132,8 +132,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
       {/* Book Information */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1">
-            <span className="uppercase tracking-wider font-medium text-amber-600 dark:text-amber-400">
+          <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">
+            <span className="uppercase tracking-wider font-semibold text-[10px] text-amber-600 dark:text-amber-400">
               {book.category}
             </span>
             <div className="flex items-center gap-1 text-amber-500">
@@ -144,21 +144,21 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           </div>
 
           <Link to={`/books/${book.id}`}>
-            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-sm line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug">
+            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-[15px] sm:text-base line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug tracking-tight">
               {book.title}
             </h3>
           </Link>
 
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 truncate">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium truncate">
             {book.author}
           </p>
         </div>
 
         {/* Price & Add to Cart button */}
-        <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
+        <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="font-bold text-base text-slate-900 dark:text-white">
+              <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">
                 ${book.price.toFixed(2)}
               </span>
               {book.oldPrice && (

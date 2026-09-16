@@ -95,16 +95,16 @@ export const HomePage: React.FC = () => {
               {/* Badges / Stats */}
               <div className="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 grid grid-cols-3 gap-4 text-center lg:text-left">
                 <div>
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">10,000+</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Kitoblar javonda</p>
+                  <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">10,000+</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Kitoblar javonda</p>
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">50,000+</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Mamnun kitobxon</p>
+                  <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">50,000+</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Mamnun kitobxon</p>
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">24/7</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Tez yetkazib berish</p>
+                  <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">24/7</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Tez yetkazib berish</p>
                 </div>
               </div>
             </div>
