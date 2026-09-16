@@ -15,7 +15,7 @@ import {
   ShieldCheck, 
   Check, 
   LogOut, 
-  Sparkles,
+  Award,
   ChevronDown
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
@@ -129,7 +129,7 @@ export const Navbar: React.FC = () => {
                 to="/books?category=Bestsellers"
                 className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition flex items-center gap-1"
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                <Award className="w-3.5 h-3.5 text-amber-500" />
                 {t.nav.bestsellers}
               </Link>
               <Link

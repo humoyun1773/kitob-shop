@@ -1,7 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
-  Sparkles, 
   ArrowRight, 
   BookOpen, 
   TrendingUp, 
@@ -38,7 +37,7 @@ export const HomePage: React.FC = () => {
   const categories: { name: BookCategory; label: string; icon: string; count: number; bg: string }[] = [
     { name: 'Self Development', label: 'Shaxsiy Rivojlanish', icon: '🌱', count: 18, bg: 'from-emerald-500/10 to-teal-500/10 hover:border-emerald-500/50' },
     { name: 'Business', label: 'Biznes & Moliya', icon: '💼', count: 14, bg: 'from-blue-500/10 to-indigo-500/10 hover:border-blue-500/50' },
-    { name: 'Fiction', label: 'Badiiy Adabiyot', icon: '✨', count: 32, bg: 'from-purple-500/10 to-pink-500/10 hover:border-purple-500/50' },
+    { name: 'Fiction', label: 'Badiiy Adabiyot', icon: '📖', count: 32, bg: 'from-purple-500/10 to-pink-500/10 hover:border-purple-500/50' },
     { name: 'Classics', label: 'Klassik Meros', icon: '🏛️', count: 25, bg: 'from-amber-500/10 to-orange-500/10 hover:border-amber-500/50' },
     { name: 'History', label: 'Tarix & Madaniyat', icon: '📜', count: 19, bg: 'from-rose-500/10 to-red-500/10 hover:border-rose-500/50' },
     { name: 'Technology', label: 'Texnologiya & IT', icon: '💻', count: 12, bg: 'from-cyan-500/10 to-blue-500/10 hover:border-cyan-500/50' },
@@ -59,7 +58,7 @@ export const HomePage: React.FC = () => {
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-semibold shadow-sm">
-                <Sparkles className="w-4 h-4 text-amber-500" />
+                <BookOpen className="w-4 h-4 text-amber-500" />
                 <span>{t.hero.badge}</span>
               </div>
 
@@ -305,7 +304,7 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 mb-1">
-                <Sparkles className="w-4 h-4" />
+                <BookOpen className="w-4 h-4" />
                 <span>{t.sections.recommended}</span>
               </div>
               <h3 className="font-serif font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">

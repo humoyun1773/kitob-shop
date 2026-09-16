@@ -9,7 +9,7 @@
 
 ---
 
-## ✨ Asosiy Xususiyatlar (Features)
+## 🚀 Asosiy Xususiyatlar (Features)
 
 ### 1. 🎨 Premium & Cinematic Dizayn
 - **Hero Section:** Jozibador katta tipografiya, animatsiyali suzuvchi 3D kitob muqovalari, nozik zarralar (particles) va gradient yoritish effektlari.

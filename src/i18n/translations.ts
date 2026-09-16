@@ -17,7 +17,7 @@ export const translations = {
       searchPlaceholder: "Kitob nomi, muallif yoki janr bo'yicha qidiring..."
     },
     hero: {
-      badge: "✨ Premium Kitob Do'koni",
+      badge: "Premium Kitob Do'koni",
       title1: "Keyingi sevimli kitobingiz",
       titleHighlight: "shu yerda boshlanadi.",
       subtitle: "Dunyo miqyosidagi eng sara bestsellerlar, ilmiy, badiiy va shaxsiy rivojlanish durdonalari. Haqiqiy kitobxonlar uchun yaratilgan premium muhit.",
@@ -205,7 +205,7 @@ export const translations = {
       searchPlaceholder: "Поиск книги, автора или жанра..."
     },
     hero: {
-      badge: "✨ Премиум Книжный Магазин",
+      badge: "Премиум Книжный Магазин",
       title1: "Ваша следующая великая история",
       titleHighlight: "начинается прямо здесь.",
       subtitle: "Лучшие мировые бестселлеры, шедевры классики, науки и саморазвития. Атмосфера истинного книжного эстетизма.",
@@ -393,7 +393,7 @@ export const translations = {
       searchPlaceholder: "Search by title, author, or genre..."
     },
     hero: {
-      badge: "✨ Premium Bookstore Experience",
+      badge: "Premium Bookstore Experience",
       title1: "Your next great story",
       titleHighlight: "starts right here.",
       subtitle: "Handpicked literary masterpieces, global bestsellers, and mind-enriching books. Designed with cinematic elegance for book lovers.",
