@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, Star, Heart, ShoppingBag, Check, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Book } from '../../types/book';
@@ -59,6 +59,9 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
               src={book.coverImage}
               alt={book.title}
               className="max-h-[380px] w-auto object-cover rounded-xl shadow-2xl"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
+              }}
             />
             {book.discount && book.discount > 0 ? (
               <span className="absolute top-6 left-6 px-3 py-1 rounded-full text-xs font-bold bg-rose-500 text-white shadow-md">

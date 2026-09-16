@@ -183,6 +183,9 @@ export const BookDetailPage: React.FC = () => {
                 src={activeImage || book.coverImage}
                 alt={book.title}
                 className="max-h-[480px] w-auto object-cover rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
+                }}
               />
 
               {book.discount && book.discount > 0 ? (

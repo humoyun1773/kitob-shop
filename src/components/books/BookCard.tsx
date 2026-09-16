@@ -69,6 +69,9 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
             alt={book.title}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
+            }}
           />
         </Link>
 
