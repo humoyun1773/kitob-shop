@@ -1,21 +1,19 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Mail, Lock, ArrowRight, ShieldCheck, Check } from 'lucide-react';
+import { BookOpen, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
 export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('humoyun@kitobshop.uz');
   const [password, setPassword] = useState('password123');
-  const [isAdminFast, setIsAdminFast] = useState(true);
   const { login } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const loginEmail = isAdminFast ? 'admin@kitobshop.uz' : email;
-    await login(loginEmail, password);
+    await login(email, password);
     showToast('Tizimga muvaffaqiyatli kirdingiz!', 'success');
     navigate('/');
   };
@@ -42,22 +40,6 @@ export const LoginPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Quick role selection badge for demo convenience */}
-        <div className="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-amber-600" />
-            <span className="font-semibold text-amber-900 dark:text-amber-200">
-              Admin huquqlari bilan kirish
-            </span>
-          </div>
-          <input
-            type="checkbox"
-            checked={isAdminFast}
-            onChange={e => setIsAdminFast(e.target.checked)}
-            className="w-4 h-4 text-amber-500 accent-amber-500 cursor-pointer"
-          />
-        </div>
-
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
@@ -69,11 +51,10 @@ export const LoginPage: React.FC = () => {
               <input
                 type="email"
                 required
-                value={isAdminFast ? 'admin@kitobshop.uz' : email}
-                disabled={isAdminFast}
+                value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="example@mail.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 disabled:opacity-70"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
               />
             </div>
           </div>
