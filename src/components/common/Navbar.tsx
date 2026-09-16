@@ -16,7 +16,8 @@ import {
   Check, 
   LogOut, 
   Award,
-  ChevronDown
+  ChevronDown,
+  LogIn
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -309,10 +310,10 @@ export const Navbar: React.FC = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Wishlist Link */}
+              {/* Wishlist Link - shown on sm+ screens (on mobile it is in the bottom bar) */}
               <Link
                 to="/wishlist"
-                className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition relative"
+                className="hidden sm:flex p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition relative cursor-pointer"
                 title="Saralanganlar"
               >
                 <Heart className="w-5 h-5" />
@@ -335,7 +336,7 @@ export const Navbar: React.FC = () => {
               {/* Cart Drawer Trigger */}
               <button
                 onClick={openCart}
-                className="p-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:scale-105 transition transform relative shadow-md active:scale-95"
+                className="p-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:scale-105 transition transform relative shadow-md active:scale-95 cursor-pointer"
                 title="Savatcha"
               >
                 <ShoppingBag className="w-5 h-5" />
@@ -355,12 +356,12 @@ export const Navbar: React.FC = () => {
                 </AnimatePresence>
               </button>
 
-              {/* User Profile / Admin Menu */}
+              {/* User Profile / Admin Menu / Login Button */}
               <div className="relative">
                 {isAuthenticated && user ? (
                   <button
                     onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition border border-slate-200 dark:border-slate-700"
+                    className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition border border-slate-200 dark:border-slate-700 cursor-pointer"
                   >
                     <img
                       src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
@@ -372,9 +373,10 @@ export const Navbar: React.FC = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold transition shadow-sm"
+                    className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#F59E0B] hover:bg-amber-600 text-[#0F172A] font-bold text-xs sm:text-sm transition shadow-sm whitespace-nowrap cursor-pointer"
                   >
-                    {t.nav.login}
+                    <LogIn className="w-3.5 h-3.5 text-[#0F172A]" />
+                    <span>{t.nav.login}</span>
                   </Link>
                 )}
 
@@ -534,40 +536,106 @@ export const Navbar: React.FC = () => {
             className="overflow-hidden lg:hidden bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 px-6 py-4 mt-3 shadow-xl"
           >
             <div className="flex flex-col gap-3">
+              {/* Mobile Auth / Login banner */}
+              {isAuthenticated && user ? (
+                <div className="pb-3 border-b border-slate-200 dark:border-slate-700/80">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#0F172A]/80 border border-slate-200/80 dark:border-slate-700">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
+                        alt={user.name}
+                        className="w-9 h-9 rounded-full object-cover border border-amber-500/50 flex-shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="p-1.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition ml-2 flex-shrink-0 cursor-pointer"
+                      title={t.nav.logout}
+                    >
+                      <LogOut className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mt-2">
+                    <Link
+                      to="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-amber-500 transition cursor-pointer"
+                    >
+                      <User className="w-3.5 h-3.5" />
+                      <span>{t.nav.profile}</span>
+                    </Link>
+                    {isAdmin && (
+                      <Link
+                        to="/admin"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 transition cursor-pointer"
+                      >
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        <span>{t.nav.admin}</span>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="pb-3 border-b border-slate-200 dark:border-slate-700/80">
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#F59E0B] hover:bg-amber-600 text-[#0F172A] font-bold text-sm shadow-md transition cursor-pointer"
+                  >
+                    <LogIn className="w-4 h-4 text-[#0F172A]" />
+                    <span>{t.nav.login} / Ro'yxatdan o'tish</span>
+                  </Link>
+                </div>
+              )}
+
               <Link
                 to="/"
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
               >
                 {t.nav.home}
               </Link>
               <Link
                 to="/books"
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
               >
                 {t.nav.books}
               </Link>
               <Link
                 to="/books?category=Bestsellers"
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
               >
                 {t.nav.bestsellers}
               </Link>
               <Link
                 to="/books?sort=newest"
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
               >
                 {t.nav.newReleases}
               </Link>
               <Link
                 to="/orders"
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
               >
                 Buyurtmalarim
               </Link>
               {isAdmin && (
                 <Link
                   to="/admin"
-                  className="py-2 text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="py-2 text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
                 >
                   {t.nav.admin}
                 </Link>
@@ -583,7 +651,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-around">
           <Link
             to="/"
-            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition cursor-pointer ${
               location.pathname === '/' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -592,7 +660,7 @@ export const Navbar: React.FC = () => {
           </Link>
           <Link
             to="/books"
-            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition cursor-pointer ${
               location.pathname === '/books' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -601,7 +669,7 @@ export const Navbar: React.FC = () => {
           </Link>
           <Link
             to="/wishlist"
-            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition relative ${
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition relative cursor-pointer ${
               location.pathname === '/wishlist' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -615,7 +683,7 @@ export const Navbar: React.FC = () => {
           </Link>
           <button
             onClick={openCart}
-            className="flex flex-col items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 relative transition hover:text-[#F59E0B]"
+            className="flex flex-col items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 relative transition hover:text-[#F59E0B] cursor-pointer"
           >
             <ShoppingBag className="w-5 h-5" />
             {totalItemsCount > 0 && (
@@ -627,12 +695,12 @@ export const Navbar: React.FC = () => {
           </button>
           <Link
             to={isAuthenticated ? "/profile" : "/login"}
-            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition cursor-pointer ${
               location.pathname.startsWith('/profile') || location.pathname.startsWith('/login') ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <User className="w-5 h-5" />
-            <span>Profil</span>
+            {isAuthenticated ? <User className="w-5 h-5" /> : <LogIn className="w-5 h-5" />}
+            <span>{isAuthenticated ? 'Profil' : 'Kirish'}</span>
           </Link>
         </div>
       </div>
