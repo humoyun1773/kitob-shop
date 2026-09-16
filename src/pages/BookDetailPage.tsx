@@ -278,7 +278,7 @@ export const BookDetailPage: React.FC = () => {
                 <button
                   onClick={handleAddToCart}
                   disabled={book.stock <= 0}
-                  className="flex-1 py-4 px-6 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 font-semibold text-sm shadow-xl flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 disabled:opacity-50"
+                  className="flex-1 py-4 px-6 rounded-2xl bg-[#0F172A] text-white hover:bg-[#F59E0B] hover:text-[#0F172A] dark:bg-[#F59E0B] dark:text-[#0F172A] dark:hover:bg-amber-400 font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 disabled:opacity-50"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Savatga qo'shish</span>
@@ -302,7 +302,7 @@ export const BookDetailPage: React.FC = () => {
               <button
                 onClick={handleBuyNow}
                 disabled={book.stock <= 0}
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 hover:from-amber-600 hover:to-rose-600 text-white font-semibold text-sm shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#F59E0B] via-amber-500 to-[#d97706] hover:from-[#d97706] hover:to-[#F59E0B] text-[#0F172A] font-bold text-sm shadow-xl shadow-[#F59E0B]/20 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <span>{t.detail.buyNow}</span>
               </button>

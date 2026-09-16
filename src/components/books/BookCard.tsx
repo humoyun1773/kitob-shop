@@ -80,7 +80,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
             </span>
           ) : null}
           {book.isBestseller && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white uppercase tracking-wider shadow-sm">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F59E0B] text-[#0F172A] uppercase tracking-wider shadow-sm">
               Bestseller
             </span>
           )}
@@ -176,8 +176,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
               isAddedAnim
                 ? 'bg-emerald-500 text-white scale-95'
                 : inCart
-                ? 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 hover:bg-amber-200'
-                : 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 dark:hover:text-slate-950'
+                ? 'bg-[#F59E0B]/15 text-amber-800 dark:bg-[#F59E0B]/20 dark:text-[#F59E0B]'
+                : 'bg-[#0F172A] text-white hover:bg-[#F59E0B] hover:text-[#0F172A] dark:bg-[#F59E0B] dark:text-[#0F172A] dark:hover:bg-amber-400 font-semibold'
             } disabled:opacity-50 disabled:cursor-not-allowed`}
             title={inCart ? t.bookCard.inCart : t.bookCard.addToCart}
           >

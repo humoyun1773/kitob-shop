@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 dark:bg-[#0f1117]/90 glass-nav shadow-sm border-b border-slate-200/50 dark:border-slate-800/50 py-3'
+            ? 'bg-white/90 dark:bg-[#0F172A]/90 glass-nav shadow-sm border-b border-slate-200/50 dark:border-slate-800/60 py-3'
             : 'bg-transparent py-4'
         }`}
       >
@@ -88,16 +88,16 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-rose-500 to-amber-400 p-0.5 shadow-md group-hover:scale-105 transition transform">
-                <div className="w-full h-full bg-white dark:bg-[#121620] rounded-[10px] flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] p-0.5 shadow-md group-hover:scale-105 transition transform">
+                <div className="w-full h-full bg-white dark:bg-[#0F172A] rounded-[10px] flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-[#F59E0B]" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">
-                  Kitob<span className="text-amber-600 dark:text-amber-400">Shop</span>
+                <span className="font-serif font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition">
+                  Kitob<span className="text-[#F59E0B]">Shop</span>
                 </span>
-                <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-600 dark:text-slate-300">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
                   Premium Bookstore
                 </span>
               </div>
@@ -500,7 +500,7 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0f1117]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2">
         <div className="flex items-center justify-around">
           <Link
             to="/"

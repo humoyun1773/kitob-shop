@@ -7,16 +7,16 @@ export const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative bg-white dark:bg-[#0a0c12] text-slate-600 dark:text-slate-400 pt-16 pb-24 lg:pb-12 border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-200 overflow-hidden">
+    <footer className="relative bg-white dark:bg-[#0F172A] text-slate-600 dark:text-slate-400 pt-16 pb-24 lg:pb-12 border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-200 overflow-hidden">
       {/* Subtle ambient lighting effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-36 bg-amber-500/5 dark:bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-36 bg-rose-500/5 dark:bg-rose-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-36 bg-[#F59E0B]/5 dark:bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-36 bg-[#F59E0B]/5 dark:bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Feature highlights */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 border-b border-slate-200/80 dark:border-slate-800/80">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center flex-shrink-0">
               <Truck className="w-6 h-6" />
             </div>
             <div>
@@ -63,11 +63,11 @@ export const Footer: React.FC = () => {
           {/* Brand info */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-white font-bold shadow-md group-hover:scale-105 transition transform">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] flex items-center justify-center text-[#0F172A] font-bold shadow-md group-hover:scale-105 transition transform">
                 <BookOpen className="w-5 h-5" />
               </div>
               <span className="font-serif font-bold text-2xl text-slate-900 dark:text-white tracking-tight">
-                Kitob<span className="text-amber-600 dark:text-amber-400">Shop</span>
+                Kitob<span className="text-[#F59E0B]">Shop</span>
               </span>
             </Link>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-4 leading-relaxed max-w-sm">

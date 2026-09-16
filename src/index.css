@@ -7,12 +7,16 @@
     --bg-primary: #faf8f5;
     --bg-card: #ffffff;
     --border-color: #f0eae1;
+    --navy: #0F172A;
+    --gold: #F59E0B;
   }
   
   .dark {
-    --bg-primary: #0f1117;
-    --bg-card: #181c24;
-    --border-color: #262c3a;
+    --bg-primary: #0F172A;
+    --bg-card: #1e293b;
+    --border-color: #334155;
+    --navy: #0F172A;
+    --gold: #F59E0B;
   }
 
   html {

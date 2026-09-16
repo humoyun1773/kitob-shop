@@ -48,23 +48,23 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* 2. CINEMATIC HERO SECTION (Requirement #2, #41) */}
-      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-amber-500/5 via-rose-500/5 to-transparent">
+      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-[#F59E0B]/5 via-amber-500/5 to-transparent">
         {/* Subtle background glow elements */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-amber-400/15 via-rose-400/15 to-transparent blur-3xl pointer-events-none rounded-full" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/15 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-semibold shadow-sm">
-                <BookOpen className="w-4 h-4 text-amber-500" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-amber-700 dark:text-[#F59E0B] text-xs font-semibold shadow-sm">
+                <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                 <span>{t.hero.badge}</span>
               </div>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                 {t.hero.title1}{' '}
-                <span className="bg-gradient-to-r from-amber-600 via-rose-500 to-amber-500 bg-clip-text text-transparent italic">
+                <span className="bg-gradient-to-r from-[#F59E0B] via-amber-400 to-[#d97706] bg-clip-text text-transparent italic">
                   {t.hero.titleHighlight}
                 </span>
               </h1>
@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                 <Link
                   to="/books"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 hover:from-amber-600 hover:to-rose-600 text-white font-semibold text-sm shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#d97706] hover:from-[#d97706] hover:to-[#F59E0B] text-[#0F172A] font-bold text-sm shadow-xl shadow-[#F59E0B]/20 hover:shadow-2xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
                 >
                   <span>{t.hero.exploreBtn}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
@@ -85,9 +85,9 @@ export const HomePage: React.FC = () => {
 
                 <Link
                   to="/books?category=Classics"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2"
                 >
-                  <BookOpen className="w-4 h-4 text-amber-500" />
+                  <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                   <span>{t.hero.browseCollection}</span>
                 </Link>
               </div>
@@ -123,7 +123,7 @@ export const HomePage: React.FC = () => {
                       alt="Atomic Habits"
                       className="w-full h-64 sm:h-72 object-cover"
                     />
-                    <div className="p-3 bg-white/95 dark:bg-[#151922]/95 backdrop-blur-md">
+                    <div className="p-3 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md">
                       <p className="font-serif font-bold text-xs text-slate-900 dark:text-white truncate">Atomic Habits</p>
                       <p className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">$14.99 • ⭐ 4.9</p>
                     </div>
@@ -200,7 +200,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* FEATURED BOOKS SECTION */}
-      <section className="py-16 bg-slate-50/60 dark:bg-[#121620]/60 border-y border-slate-200/50 dark:border-slate-800/50">
+      <section className="py-16 bg-slate-50/60 dark:bg-[#0F172A]/70 border-y border-slate-200/50 dark:border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
