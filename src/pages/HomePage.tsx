@@ -17,6 +17,7 @@ import { useBooks } from '../context/BookContext';
 import { useLanguage } from '../context/LanguageContext';
 import { BookCard } from '../components/books/BookCard';
 import { QuickViewModal } from '../components/common/QuickViewModal';
+import { SEO } from '../components/common/SEO';
 import { Book, BookCategory } from '../types/book';
 
 export const HomePage: React.FC = () => {
@@ -47,6 +48,12 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="KitobShop — Zamonaviy & Premium Online Kitob Do'koni"
+        description="O'zbekistondagi eng yirik online kitob platformasi. Jahon bestsellerlari, badiiy, biznes va psixologiya kitoblari 24 soat ichida yetkazib berish bilan."
+        keywords="kitoblar, online kitob do'koni, kitob xarid qilish, bestseller kitoblar, toshkent yetkazib berish"
+      />
+
       {/* 2. CINEMATIC HERO SECTION (Requirement #2, #41) */}
       <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-[#F59E0B]/5 via-amber-500/5 to-transparent">
         {/* Subtle background glow elements */}

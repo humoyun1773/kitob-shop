@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { BookCard } from '../components/books/BookCard';
 import { BookFilterSidebar, FilterState } from '../components/books/BookFilterSidebar';
 import { QuickViewModal } from '../components/common/QuickViewModal';
+import { SEO } from '../components/common/SEO';
 import { Book, BookCategory } from '../types/book';
 
 export const BooksPage: React.FC = () => {
@@ -128,8 +129,20 @@ export const BooksPage: React.FC = () => {
     setSearchParams({});
   };
 
+  const pageTitle = filters.category 
+    ? `${filters.category} Kitoblari | KitobShop Katalogi`
+    : searchQuery 
+    ? `"${searchQuery}" bo'yicha qidiruv natijalari | KitobShop` 
+    : "Barcha Kitoblar Katalogi | KitobShop";
+
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <SEO
+        title={pageTitle}
+        description="Barcha janrlardagi saralangan jahon va o'zbek adabiyoti durdonalari katalogi. Filtrlar, bestsellerlar va yangi nashrlar."
+        keywords={`kitoblar katalogi, ${filters.category || 'barcha kitoblar'}, bestseller kitoblar narxlari`}
+      />
+
       {/* Page Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-b border-slate-200/60 dark:border-slate-800/60">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

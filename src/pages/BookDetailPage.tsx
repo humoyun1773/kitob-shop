@@ -18,6 +18,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { useLanguage } from '../context/LanguageContext';
 import { BookCard } from '../components/books/BookCard';
+import { SEO } from '../components/common/SEO';
 
 export const BookDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -114,6 +115,42 @@ export const BookDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-32 lg:pb-20">
+      <SEO
+        title={`${book.title} — ${book.author} | KitobShop`}
+        description={book.description.slice(0, 160)}
+        keywords={`${book.title}, ${book.author}, ${book.category}, sotib olish, narxi, sharhlar`}
+        image={book.coverImage}
+        type="book"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Book",
+          "name": book.title,
+          "author": {
+            "@type": "Person",
+            "name": book.author
+          },
+          "isbn": book.isbn,
+          "image": book.coverImage,
+          "description": book.description,
+          "numberOfPages": book.pages,
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": book.rating,
+            "reviewCount": book.reviewsCount
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": book.price,
+            "priceCurrency": "USD",
+            "availability": book.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "KitobShop"
+            }
+          }
+        }}
+      />
+
       {/* Breadcrumbs */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 border-b border-slate-200/60 dark:border-slate-800/60">
         <nav className="flex items-center gap-2 text-xs text-slate-500 overflow-x-auto whitespace-nowrap">

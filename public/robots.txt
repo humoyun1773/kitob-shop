@@ -1,0 +1,15 @@
+﻿User-agent: *
+Allow: /
+Allow: /books
+Allow: /books/*
+Allow: /wishlist
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /checkout
+Disallow: /order-confirmed/*
+Disallow: /order/*
+Disallow: /profile
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://kitobshop.uz/sitemap.xml
