@@ -390,7 +390,7 @@ export const Navbar: React.FC = () => {
               {/* Cart Drawer Trigger */}
               <button
                 onClick={openCart}
-                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#0F172A] text-white dark:bg-white dark:text-[#0F172A] hover:bg-slate-800 dark:hover:bg-slate-100 transition-all transform active:scale-95 shadow-md shadow-slate-900/10 dark:shadow-black/40 cursor-pointer group"
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#0F172A] text-white dark:bg-slate-800/90 dark:text-slate-100 hover:bg-slate-800 dark:hover:bg-slate-700 transition-all transform active:scale-95 shadow-md shadow-slate-900/10 dark:shadow-black/40 border border-transparent dark:border-slate-700/80 cursor-pointer group"
                 title="Savatcha"
               >
                 <ShoppingBag className="w-4 h-4 text-[#F59E0B] group-hover:scale-110 transition-transform" />

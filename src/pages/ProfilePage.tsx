@@ -219,7 +219,7 @@ export const ProfilePage: React.FC = () => {
                 </h3>
                 <button
                   onClick={() => setIsAddingAddress(!isAddingAddress)}
-                  className="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-semibold text-xs flex items-center gap-1.5 shadow-sm"
+                  className="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 font-semibold text-xs flex items-center gap-1.5 shadow-sm transition border border-transparent dark:border-slate-700/60"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Yangi manzil</span>

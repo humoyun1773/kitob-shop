@@ -99,7 +99,7 @@ export const WishlistPage: React.FC = () => {
                 <button
                   onClick={() => handleAddToCart(book)}
                   disabled={book.stock <= 0}
-                  className="w-full py-2.5 px-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 font-semibold text-xs flex items-center justify-center gap-1.5 transition disabled:opacity-50"
+                  className="w-full py-2.5 px-3 rounded-xl bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 font-semibold text-xs flex items-center justify-center gap-1.5 transition disabled:opacity-50 border border-transparent dark:border-slate-700/60"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />
                   <span>Savatga qo'shish</span>

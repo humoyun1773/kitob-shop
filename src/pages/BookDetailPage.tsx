@@ -549,7 +549,7 @@ export const BookDetailPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmittingReview}
-                  className="w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:bg-amber-600 dark:hover:bg-amber-400 transition flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full py-3 rounded-xl bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-100 font-semibold hover:bg-amber-600 dark:hover:bg-amber-500 transition flex items-center justify-center gap-2 shadow-sm border border-transparent dark:border-slate-700/60"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{isSubmittingReview ? 'Yuborilmoqda...' : t.detail.submitReview}</span>

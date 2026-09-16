@@ -172,7 +172,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
                 <button
                   onClick={handleAddToCart}
                   disabled={book.stock <= 0}
-                  className="flex-1 py-3 px-5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 transition font-semibold text-xs flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                  className="flex-1 py-3 px-5 rounded-xl bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 transition font-semibold text-xs flex items-center justify-center gap-2 shadow-md disabled:opacity-50 border border-transparent dark:border-slate-700/60"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Savatga qo'shish</span>

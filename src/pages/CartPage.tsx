@@ -163,7 +163,7 @@ export const CartPage: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-xs font-semibold"
+                  className="px-4 py-2 bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 rounded-xl text-xs font-semibold transition border border-transparent dark:border-slate-700/60"
                 >
                   {t.cart.apply}
                 </button>

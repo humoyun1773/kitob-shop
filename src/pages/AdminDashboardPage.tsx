@@ -61,7 +61,7 @@ export const AdminDashboardPage: React.FC = () => {
           </Link>
           <Link
             to="/admin/orders"
-            className="px-4 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 font-semibold text-xs flex items-center gap-2 shadow-sm transition"
+            className="px-4 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 font-semibold text-xs flex items-center gap-2 shadow-sm transition border border-transparent dark:border-slate-700/60"
           >
             <ShoppingBag className="w-4 h-4" />
             <span>Buyurtmalar</span>

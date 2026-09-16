@@ -64,7 +64,7 @@ export const OrderTrackingPage: React.FC = () => {
 
           <button
             onClick={() => setIsReceiptOpen(true)}
-            className="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-amber-600 dark:hover:bg-amber-400 font-semibold text-xs flex items-center gap-1.5 transition shadow-sm"
+            className="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100 hover:bg-amber-600 dark:hover:bg-amber-500 font-semibold text-xs flex items-center gap-1.5 transition shadow-sm border border-transparent dark:border-slate-700/60"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Chekni ko'rish</span>

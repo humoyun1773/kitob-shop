@@ -214,7 +214,7 @@ export const CartDrawer: React.FC = () => {
                     </div>
                     <button
                       type="submit"
-                      className="px-3.5 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-semibold hover:bg-amber-600 dark:hover:bg-amber-400 transition"
+                      className="px-3.5 py-2 rounded-xl bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-100 text-xs font-semibold hover:bg-amber-600 dark:hover:bg-amber-500 transition border border-transparent dark:border-slate-700/60"
                     >
                       {t.cart.apply}
                     </button>
