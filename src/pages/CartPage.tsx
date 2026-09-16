@@ -61,7 +61,7 @@ export const CartPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-24 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="pb-6 mb-8 border-b border-slate-200/60 dark:border-slate-800/60">
         <h1 className="font-serif font-bold text-3xl text-slate-900 dark:text-white">
           {t.cart.title} ({items.length})

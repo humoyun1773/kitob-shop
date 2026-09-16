@@ -23,7 +23,7 @@ export const OrdersPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-24 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="pb-6 mb-8 border-b border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400">

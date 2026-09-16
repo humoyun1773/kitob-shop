@@ -69,7 +69,7 @@ export const ProfilePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-32 lg:pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-32 lg:pb-24 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/5 p-6 sm:p-8 rounded-3xl border border-amber-500/20 mb-8 flex flex-col sm:flex-row items-center gap-6">
         <img

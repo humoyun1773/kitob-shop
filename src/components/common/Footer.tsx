@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
       <div className="absolute bottom-0 right-1/4 w-96 h-36 bg-[#F59E0B]/5 dark:bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Feature highlights */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 border-b border-slate-200/80 dark:border-slate-800/80">
+      <div className="relative max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pb-12 border-b border-slate-200/80 dark:border-slate-800/80">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center flex-shrink-0">
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Main footer content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand info */}
           <div className="lg:col-span-2">
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Copyright */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div className="relative max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
         <p>© 2026 KitobShop. Barcha huquqlar himoyalangan.</p>
         <p className="flex items-center gap-1">
           Made with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for book lovers everywhere.

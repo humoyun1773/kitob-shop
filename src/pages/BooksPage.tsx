@@ -147,7 +147,7 @@ export const BooksPage: React.FC = () => {
       />
 
       {/* Page Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-b border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 border-b border-slate-200/60 dark:border-slate-800/60">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="font-serif font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white">
@@ -215,7 +215,7 @@ export const BooksPage: React.FC = () => {
       </div>
 
       {/* Main Content Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
           {/* Desktop Filter Sidebar */}
@@ -249,7 +249,7 @@ export const BooksPage: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3.5 sm:gap-6">
                 {filteredBooks.map(book => (
                   <BookCard
                     key={book.id}

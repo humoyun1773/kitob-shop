@@ -152,7 +152,7 @@ export const BookDetailPage: React.FC = () => {
       />
 
       {/* Breadcrumbs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 border-b border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 border-b border-slate-200/60 dark:border-slate-800/60">
         <nav className="flex items-center gap-2 text-xs text-slate-500 overflow-x-auto whitespace-nowrap">
           <Link to="/" className="hover:text-amber-500 transition">Bosh sahifa</Link>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -165,7 +165,7 @@ export const BookDetailPage: React.FC = () => {
       </div>
 
       {/* Main Product Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column: Cover with 3D Tilt & Gallery */}

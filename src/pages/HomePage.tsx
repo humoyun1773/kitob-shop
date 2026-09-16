@@ -80,7 +80,7 @@ export const HomePage: React.FC = () => {
         {/* Subtle background glow elements */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/20 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full animate-ambient-glow" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Content */}
@@ -210,7 +210,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 6. CATEGORIES SECTION (Requirement #6) */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <span className="text-xs uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400">
@@ -255,7 +255,7 @@ export const HomePage: React.FC = () => {
 
       {/* FEATURED BOOKS SECTION */}
       <section className="py-16 bg-slate-50/80 dark:bg-[#0F172A] border-y border-slate-200/80 dark:border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
               <span className="text-xs uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400">
@@ -287,7 +287,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* BEST SELLERS SECTION (Requirement #6) */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <span className="text-xs uppercase font-bold tracking-wider text-rose-500">
@@ -320,7 +320,7 @@ export const HomePage: React.FC = () => {
 
       {/* TRENDING BOOKS SECTION (Requirement #6) */}
       <section className="py-16 bg-gradient-to-r from-amber-500/5 via-transparent to-rose-500/5 border-y border-slate-200/50 dark:border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
               <span className="text-xs uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400">
@@ -353,7 +353,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 43. RECOMMENDATION ENGINE (Requirement #6, #43) */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-amber-500/10 via-rose-500/5 to-purple-500/10 border border-amber-500/20 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>

@@ -130,7 +130,7 @@ export const Navbar: React.FC = () => {
             : 'bg-white/85 dark:bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/40 py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 group">

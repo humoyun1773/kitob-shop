@@ -38,7 +38,7 @@ export const AdminDashboardPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-24 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       {/* Admin Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200/60 dark:border-slate-800/60 gap-4">
         <div>
