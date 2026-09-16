@@ -126,75 +126,98 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 dark:bg-[#0F172A]/95 glass-nav shadow-md border-b border-slate-200/80 dark:border-slate-800/80 py-3'
-            : 'bg-white/85 dark:bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/40 py-4'
+            ? 'bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-200/80 dark:border-slate-800/80 py-2.5'
+            : 'bg-white/75 dark:bg-[#0F172A]/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/40 py-3.5'
         }`}
       >
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-3 sm:gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] p-0.5 shadow-md group-hover:scale-105 transition transform">
+            <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] p-0.5 shadow-md shadow-amber-500/20 group-hover:shadow-amber-500/40 group-hover:scale-105 transition-all duration-300">
                 <div className="w-full h-full bg-white dark:bg-[#0F172A] rounded-[10px] flex items-center justify-center">
                   <BookOpen className="w-5 h-5 text-[#F59E0B]" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition">
+                <span className="font-serif font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition-colors">
                   Kitob<span className="text-[#F59E0B]">Shop</span>
                 </span>
-                <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
+                <span className="hidden sm:block text-[9px] uppercase font-extrabold tracking-widest text-slate-400 dark:text-slate-500">
                   Premium Bookstore
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-7">
+            {/* Desktop Navigation Links (Floating Glass Pill) */}
+            <nav className="hidden lg:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/60 p-1.5 rounded-full border border-slate-200/70 dark:border-slate-800/70 backdrop-blur-md shadow-inner">
               <Link
                 to="/"
-                className={`text-sm font-medium transition hover:text-amber-600 dark:hover:text-amber-400 ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   location.pathname === '/'
-                    ? 'text-amber-600 dark:text-amber-400 font-semibold'
-                    : 'text-slate-700 dark:text-slate-300'
+                    ? 'bg-white dark:bg-[#0F172A] text-[#F59E0B] shadow-sm border border-slate-200/80 dark:border-amber-500/30'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
                 }`}
               >
                 {t.nav.home}
               </Link>
               <Link
                 to="/books"
-                className={`text-sm font-medium transition hover:text-amber-600 dark:hover:text-amber-400 ${
-                  location.pathname === '/books'
-                    ? 'text-amber-600 dark:text-amber-400 font-semibold'
-                    : 'text-slate-700 dark:text-slate-300'
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                  location.pathname === '/books' && !location.search.includes('Bestsellers') && !location.search.includes('newest')
+                    ? 'bg-white dark:bg-[#0F172A] text-[#F59E0B] shadow-sm border border-slate-200/80 dark:border-amber-500/30'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
                 }`}
               >
                 {t.nav.books}
               </Link>
               <Link
                 to="/books?category=Bestsellers"
-                className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition flex items-center gap-1"
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+                  location.search.includes('Bestsellers')
+                    ? 'bg-white dark:bg-[#0F172A] text-[#F59E0B] shadow-sm border border-slate-200/80 dark:border-amber-500/30'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
+                }`}
               >
-                <Award className="w-3.5 h-3.5 text-amber-500" />
-                {t.nav.bestsellers}
+                <Award className="w-3.5 h-3.5 text-[#F59E0B]" />
+                <span>{t.nav.bestsellers}</span>
               </Link>
               <Link
                 to="/books?sort=newest"
-                className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition"
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                  location.search.includes('newest')
+                    ? 'bg-white dark:bg-[#0F172A] text-[#F59E0B] shadow-sm border border-slate-200/80 dark:border-amber-500/30'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
+                }`}
               >
                 {t.nav.newReleases}
               </Link>
             </nav>
 
             {/* Search, Utilities & Actions */}
-            <div className="flex items-center gap-1 sm:gap-2.5">
-              {/* Quick Search Trigger */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5">
+              {/* Quick Search Trigger Pill on md+, Icon button on mobile */}
               <button
                 onClick={() => {
-                  setIsSearchOpen(!isSearchOpen);
-                  setTimeout(() => searchInputRef.current?.focus(), 100);
+                  setIsSearchOpen(true);
+                  setTimeout(() => searchInputRef.current?.focus(), 80);
                 }}
-                className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition"
+                className="hidden md:flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-200/70 dark:hover:bg-slate-700/80 border border-slate-200/80 dark:border-slate-700/70 text-slate-500 dark:text-slate-400 transition-all text-xs cursor-pointer shadow-inner group hover:border-[#F59E0B]/50"
+                title="Qidirish (Ctrl+K)"
+              >
+                <Search className="w-4 h-4 text-slate-400 group-hover:text-[#F59E0B] transition-colors" />
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Kitob qidirish...</span>
+                <kbd className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono font-bold bg-white dark:bg-[#0F172A] text-slate-600 dark:text-slate-400 rounded-md border border-slate-300 dark:border-slate-700 shadow-xs">
+                  ⌘K
+                </kbd>
+              </button>
+
+              <button
+                onClick={() => {
+                  setIsSearchOpen(true);
+                  setTimeout(() => searchInputRef.current?.focus(), 80);
+                }}
+                className="flex md:hidden p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
                 title="Qidiruv"
               >
                 <Search className="w-5 h-5" />
@@ -204,11 +227,11 @@ export const Navbar: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsLangOpen(!isLangOpen)}
-                  className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-full bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 text-slate-700 dark:text-slate-300 transition flex items-center gap-1.5 cursor-pointer shadow-xs"
                   title="Tilni o'zgartirish"
                 >
-                  <Globe className="w-5 h-5" />
-                  <span className="text-xs font-semibold uppercase">{language}</span>
+                  <Globe className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                  <span className="text-[11px] font-bold uppercase tracking-wider">{language}</span>
                 </button>
                 <AnimatePresence>
                   {isLangOpen && (
@@ -217,7 +240,7 @@ export const Navbar: React.FC = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.15, ease: "easeOut" }}
-                      className="absolute right-0 mt-2 w-36 bg-white dark:bg-[#1E293B] rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 z-50 origin-top-right"
+                      className="absolute right-0 mt-2 w-36 bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/80 dark:border-slate-700/80 py-1.5 z-50 origin-top-right overflow-hidden"
                     >
                       {languages.map(l => (
                         <button
@@ -226,17 +249,17 @@ export const Navbar: React.FC = () => {
                             setLanguage(l.code);
                             setIsLangOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-50 dark:hover:bg-slate-800 transition ${
+                          className={`w-full text-left px-3 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-500/10 dark:hover:bg-slate-800/80 transition cursor-pointer ${
                             language === l.code
-                              ? 'text-amber-600 dark:text-amber-400 font-semibold'
+                              ? 'text-[#F59E0B] font-bold bg-amber-500/5'
                               : 'text-slate-700 dark:text-slate-300'
                           }`}
                         >
                           <span className="flex items-center gap-2">
-                            <span>{l.flag}</span>
+                            <span className="text-sm">{l.flag}</span>
                             <span>{l.label}</span>
                           </span>
-                          {language === l.code && <Check className="w-3.5 h-3.5 text-amber-500" />}
+                          {language === l.code && <Check className="w-3.5 h-3.5 text-[#F59E0B]" />}
                         </button>
                       ))}
                     </motion.div>
@@ -247,20 +270,20 @@ export const Navbar: React.FC = () => {
               {/* Theme Toggle */}
               <button
                 onClick={() => setTheme(isDark ? 'light' : 'dark')}
-                className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition active:rotate-180"
+                className="p-2 rounded-full bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 text-slate-700 dark:text-slate-300 transition-transform active:rotate-180 cursor-pointer shadow-xs"
                 title="Mavzuni almashtirish"
               >
-                {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+                {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
               </button>
 
               {/* Notifications Center */}
               <div className="relative">
                 <button
                   onClick={() => setIsNotifOpen(!isNotifOpen)}
-                  className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition relative"
+                  className="p-2 rounded-full bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 text-slate-700 dark:text-slate-300 transition relative cursor-pointer shadow-xs"
                   title="Xabarlar"
                 >
-                  <Bell className="w-5 h-5" />
+                  <Bell className="w-4 h-4" />
                   <AnimatePresence>
                     {unreadCount > 0 && (
                       <motion.span
@@ -268,7 +291,7 @@ export const Navbar: React.FC = () => {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0 }}
-                        className="absolute top-1.5 right-1.5 w-4 h-4 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse"
+                        className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#F59E0B] text-[#0F172A] text-[10px] font-black rounded-full flex items-center justify-center animate-pulse border-2 border-white dark:border-[#0F172A]"
                       >
                         {unreadCount}
                       </motion.span>
@@ -282,14 +305,14 @@ export const Navbar: React.FC = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}
-                      className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 z-50 origin-top-right"
+                      className="absolute right-0 mt-2 w-80 sm:w-96 bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-700/80 p-4 z-50 origin-top-right"
                     >
                       <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                         <div className="flex items-center gap-2">
-                          <Bell className="w-4 h-4 text-amber-500" />
+                          <Bell className="w-4 h-4 text-[#F59E0B]" />
                           <h4 className="font-semibold text-sm text-slate-900 dark:text-white">Bildirishnomalar</h4>
                           {unreadCount > 0 && (
-                            <span className="px-1.5 py-0.5 text-[10px] bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 rounded-full font-bold">
+                            <span className="px-2 py-0.5 text-[10px] bg-amber-500/10 text-amber-600 dark:text-[#F59E0B] rounded-full font-bold">
                               {unreadCount} yangi
                             </span>
                           )}
@@ -297,13 +320,13 @@ export const Navbar: React.FC = () => {
                         {unreadCount > 0 && (
                           <button
                             onClick={markAllAsRead}
-                            className="text-xs text-amber-600 dark:text-amber-400 hover:underline"
+                            className="text-xs text-[#F59E0B] hover:underline cursor-pointer font-medium"
                           >
                             O'qilgan deb belgilash
                           </button>
                         )}
                       </div>
-                      <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-72 overflow-y-auto my-2">
+                      <div className="divide-y divide-slate-100 dark:divide-slate-800/80 max-h-72 overflow-y-auto my-2">
                         {notifications.length === 0 ? (
                           <p className="text-xs text-slate-500 py-6 text-center">Bildirishnomalar mavjud emas</p>
                         ) : (
@@ -311,10 +334,10 @@ export const Navbar: React.FC = () => {
                             <div
                               key={n.id}
                               onClick={() => markAsRead(n.id)}
-                              className={`py-3 px-2 rounded-lg cursor-pointer transition ${
+                              className={`py-3 px-2 rounded-xl cursor-pointer transition ${
                                 n.isRead
                                   ? 'opacity-70 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                                  : 'bg-amber-50/60 dark:bg-amber-950/20'
+                                  : 'bg-amber-500/10'
                               }`}
                             >
                               <div className="flex items-start justify-between gap-2">
@@ -331,7 +354,7 @@ export const Navbar: React.FC = () => {
                       {notifications.length > 0 && (
                         <Link
                           to="/orders"
-                          className="block text-center text-xs font-semibold text-amber-600 dark:text-amber-400 pt-2 hover:underline"
+                          className="block text-center text-xs font-semibold text-[#F59E0B] pt-2 hover:underline cursor-pointer"
                         >
                           Barcha buyurtmalarni ko'rish →
                         </Link>
@@ -341,13 +364,13 @@ export const Navbar: React.FC = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Wishlist Link - shown on sm+ screens (on mobile it is in the bottom bar) */}
+              {/* Wishlist Link - shown on sm+ screens */}
               <Link
                 to="/wishlist"
-                className="hidden sm:flex p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition relative cursor-pointer"
+                className="hidden sm:flex p-2 rounded-full bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 text-slate-700 dark:text-slate-300 transition relative cursor-pointer shadow-xs"
                 title="Saralanganlar"
               >
-                <Heart className="w-5 h-5" />
+                <Heart className="w-4 h-4" />
                 <AnimatePresence>
                   {wishlist.length > 0 && (
                     <motion.span
@@ -356,7 +379,7 @@ export const Navbar: React.FC = () => {
                       animate={{ scale: 1 }}
                       exit={{ scale: 0 }}
                       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                      className="absolute top-1.5 right-1.5 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center"
+                      className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-[#0F172A]"
                     >
                       {wishlist.length}
                     </motion.span>
@@ -367,10 +390,11 @@ export const Navbar: React.FC = () => {
               {/* Cart Drawer Trigger */}
               <button
                 onClick={openCart}
-                className="p-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:scale-105 transition transform relative shadow-md active:scale-95 cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#0F172A] text-white dark:bg-white dark:text-[#0F172A] hover:bg-slate-800 dark:hover:bg-slate-100 transition-all transform active:scale-95 shadow-md shadow-slate-900/10 dark:shadow-black/40 cursor-pointer group"
                 title="Savatcha"
               >
-                <ShoppingBag className="w-5 h-5" />
+                <ShoppingBag className="w-4 h-4 text-[#F59E0B] group-hover:scale-110 transition-transform" />
+                <span className="hidden sm:inline text-xs font-bold tracking-tight">Savat</span>
                 <AnimatePresence>
                   {totalItemsCount > 0 && (
                     <motion.span
@@ -379,7 +403,7 @@ export const Navbar: React.FC = () => {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                      className="absolute -top-1 -right-1 w-5 h-5 bg-[#F59E0B] text-slate-950 text-xs font-extrabold rounded-full flex items-center justify-center shadow-md border-2 border-white dark:border-[#0F172A]"
+                      className="w-5 h-5 bg-[#F59E0B] text-[#0F172A] text-[11px] font-black rounded-full flex items-center justify-center shadow-sm"
                     >
                       {totalItemsCount}
                     </motion.span>
@@ -392,19 +416,22 @@ export const Navbar: React.FC = () => {
                 {isAuthenticated && user ? (
                   <button
                     onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition border border-slate-200 dark:border-slate-700 cursor-pointer"
+                    className="flex items-center gap-2 p-1 sm:pr-2.5 rounded-full bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 transition cursor-pointer shadow-xs"
                   >
                     <img
                       src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
                       alt={user.name}
-                      className="w-7 h-7 rounded-full object-cover"
+                      className="w-7 h-7 rounded-full object-cover ring-2 ring-[#F59E0B]"
                     />
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 hidden sm:block mr-1" />
+                    <span className="hidden md:inline text-xs font-semibold text-slate-800 dark:text-slate-200 max-w-[80px] truncate">
+                      {user.name.split(' ')[0]}
+                    </span>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-400 hidden sm:block" />
                   </button>
                 ) : (
                   <Link
                     to="/login"
-                    className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#F59E0B] hover:bg-amber-600 text-[#0F172A] font-bold text-xs sm:text-sm transition shadow-sm whitespace-nowrap cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-[#F59E0B] to-amber-500 hover:from-amber-500 hover:to-amber-600 text-[#0F172A] font-bold text-xs sm:text-sm transition shadow-md shadow-amber-500/20 hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap cursor-pointer"
                   >
                     <LogIn className="w-3.5 h-3.5 text-[#0F172A]" />
                     <span>{t.nav.login}</span>
@@ -418,194 +445,220 @@ export const Navbar: React.FC = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.15, ease: "easeOut" }}
-                      className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50 origin-top-right"
+                      className="absolute right-0 mt-2 w-56 bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/80 dark:border-slate-700/80 py-2 z-50 origin-top-right overflow-hidden"
                     >
-                    <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
-                      <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
-                      <div className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
-                        {user.role === 'admin' ? 'Administrator' : 'Xaridor'}
-                      </div>
-                    </div>
-
-                    <Link
-                      to="/profile"
-                      className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition"
-                    >
-                      <User className="w-4 h-4 text-slate-400" />
-                      {t.nav.profile}
-                    </Link>
-
-                    <Link
-                      to="/orders"
-                      className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition"
-                    >
-                      <ShoppingBag className="w-4 h-4 text-slate-400" />
-                      Mening Buyurtmalarim
-                    </Link>
-
-                    {/* Admin Dashboard link */}
-                    <Link
-                      to="/admin"
-                      className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-slate-800 transition"
-                    >
-                      <ShieldCheck className="w-4 h-4 text-amber-500" />
-                      {t.nav.admin}
-                    </Link>
-
-                    {/* Switch role toggle button for testing */}
-                    <button
-                      onClick={switchRole}
-                      className="w-full text-left flex items-center justify-between px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-slate-100 dark:border-slate-800"
-                    >
-                      <span>Rolni almashtirish:</span>
-                      <span className="font-semibold text-amber-600 dark:text-amber-400">
-                        {user.role === 'admin' ? 'Customer ga' : 'Admin ga'}
-                      </span>
-                    </button>
-
-                    <button
-                      onClick={logout}
-                      className="w-full text-left flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition border-t border-slate-100 dark:border-slate-800 mt-1"
-                    >
-                      <LogOut className="w-4 h-4 text-rose-500" />
-                      {t.nav.logout}
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg lg:hidden hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition active:scale-95"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="overflow-hidden lg:hidden bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 px-6 py-4 mt-3 shadow-xl"
-          >
-            <div className="flex flex-col gap-3">
-              {/* Mobile Auth / Login banner */}
-              {isAuthenticated && user ? (
-                <div className="pb-3 border-b border-slate-200 dark:border-slate-700/80">
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#0F172A]/80 border border-slate-200/80 dark:border-slate-700">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <img
-                        src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
-                        alt={user.name}
-                        className="w-9 h-9 rounded-full object-cover border border-amber-500/50 flex-shrink-0"
-                      />
-                      <div className="min-w-0">
+                      <div className="px-4 py-2.5 border-b border-slate-100 dark:border-slate-800">
                         <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
                         <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                        <div className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-[#F59E0B]">
+                          {user.role === 'admin' ? 'Administrator' : 'Xaridor'}
+                        </div>
                       </div>
-                    </div>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="p-1.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition ml-2 flex-shrink-0 cursor-pointer"
-                      title={t.nav.logout}
-                    >
-                      <LogOut className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 mt-2">
-                    <Link
-                      to="/profile"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-amber-500 transition cursor-pointer"
-                    >
-                      <User className="w-3.5 h-3.5" />
-                      <span>{t.nav.profile}</span>
-                    </Link>
-                    {isAdmin && (
-                      <Link
-                        to="/admin"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 transition cursor-pointer"
-                      >
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                        <span>{t.nav.admin}</span>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div className="pb-3 border-b border-slate-200 dark:border-slate-700/80">
-                  <Link
-                    to="/login"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#F59E0B] hover:bg-amber-600 text-[#0F172A] font-bold text-sm shadow-md transition cursor-pointer"
-                  >
-                    <LogIn className="w-4 h-4 text-[#0F172A]" />
-                    <span>{t.nav.login} / Ro'yxatdan o'tish</span>
-                  </Link>
-                </div>
-              )}
 
-              <Link
-                to="/"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
+                      <Link
+                        to="/profile"
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-500/10 transition cursor-pointer"
+                      >
+                        <User className="w-4 h-4 text-slate-400" />
+                        {t.nav.profile}
+                      </Link>
+
+                      <Link
+                        to="/orders"
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-500/10 transition cursor-pointer"
+                      >
+                        <ShoppingBag className="w-4 h-4 text-slate-400" />
+                        Mening Buyurtmalarim
+                      </Link>
+
+                      {isAdmin && (
+                        <Link
+                          to="/admin"
+                          className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-[#F59E0B] hover:bg-amber-500/10 transition cursor-pointer"
+                        >
+                          <ShieldCheck className="w-4 h-4 text-[#F59E0B]" />
+                          {t.nav.admin}
+                        </Link>
+                      )}
+
+                      <button
+                        onClick={switchRole}
+                        className="w-full text-left flex items-center justify-between px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70 border-t border-slate-100 dark:border-slate-800 cursor-pointer"
+                      >
+                        <span>Rolni almashtirish:</span>
+                        <span className="font-semibold text-[#F59E0B]">
+                          {user.role === 'admin' ? 'Customer ga' : 'Admin ga'}
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={logout}
+                        className="w-full text-left flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition border-t border-slate-100 dark:border-slate-800 mt-1 cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4 text-rose-500" />
+                        {t.nav.logout}
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Mobile menu toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-full lg:hidden bg-slate-100/70 dark:bg-slate-800/70 hover:bg-slate-200/70 dark:hover:bg-slate-700/70 border border-slate-200/80 dark:border-slate-700/70 text-slate-700 dark:text-slate-300 transition active:scale-95 cursor-pointer"
               >
-                {t.nav.home}
-              </Link>
-              <Link
-                to="/books"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
-              >
-                {t.nav.books}
-              </Link>
-              <Link
-                to="/books?category=Bestsellers"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
-              >
-                {t.nav.bestsellers}
-              </Link>
-              <Link
-                to="/books?sort=newest"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
-              >
-                {t.nav.newReleases}
-              </Link>
-              <Link
-                to="/orders"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-amber-500 cursor-pointer"
-              >
-                Buyurtmalarim
-              </Link>
-              {isAdmin && (
-                <Link
-                  to="/admin"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-2 text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
-                >
-                  {t.nav.admin}
-                </Link>
-              )}
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="overflow-hidden lg:hidden bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 px-6 py-5 mt-3 shadow-2xl rounded-b-3xl"
+            >
+              <div className="flex flex-col gap-2.5">
+                {/* Mobile Auth / Login banner */}
+                {isAuthenticated && user ? (
+                  <div className="pb-3 border-b border-slate-200/80 dark:border-slate-800">
+                    <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50/80 dark:bg-[#1E293B]/80 border border-slate-200/80 dark:border-slate-700/70">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <img
+                          src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
+                          alt={user.name}
+                          className="w-10 h-10 rounded-full object-cover ring-2 ring-[#F59E0B] flex-shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{user.name}</p>
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition ml-2 flex-shrink-0 cursor-pointer"
+                        title={t.nav.logout}
+                      >
+                        <LogOut className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 mt-2.5">
+                      <Link
+                        to="/profile"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-[#F59E0B] transition cursor-pointer"
+                      >
+                        <User className="w-3.5 h-3.5" />
+                        <span>{t.nav.profile}</span>
+                      </Link>
+                      {isAdmin && (
+                        <Link
+                          to="/admin"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold bg-amber-500/10 text-[#F59E0B] transition cursor-pointer"
+                        >
+                          <ShieldCheck className="w-3.5 h-3.5" />
+                          <span>{t.nav.admin}</span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="pb-3 border-b border-slate-200/80 dark:border-slate-800">
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#F59E0B] to-amber-500 text-[#0F172A] font-bold text-sm shadow-md shadow-amber-500/20 transition cursor-pointer"
+                    >
+                      <LogIn className="w-4 h-4 text-[#0F172A]" />
+                      <span>{t.nav.login} / Ro'yxatdan o'tish</span>
+                    </Link>
+                  </div>
+                )}
+
+                <Link
+                  to="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
+                    location.pathname === '/'
+                      ? 'bg-amber-500/15 text-[#F59E0B]'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4 text-[#F59E0B]" />
+                  <span>{t.nav.home}</span>
+                </Link>
+                <Link
+                  to="/books"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
+                    location.pathname === '/books' && !location.search.includes('Bestsellers') && !location.search.includes('newest')
+                      ? 'bg-amber-500/15 text-[#F59E0B]'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <Search className="w-4 h-4 text-[#F59E0B]" />
+                  <span>{t.nav.books}</span>
+                </Link>
+                <Link
+                  to="/books?category=Bestsellers"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
+                    location.search.includes('Bestsellers')
+                      ? 'bg-amber-500/15 text-[#F59E0B]'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <Award className="w-4 h-4 text-[#F59E0B]" />
+                  <span>{t.nav.bestsellers}</span>
+                </Link>
+                <Link
+                  to="/books?sort=newest"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
+                    location.search.includes('newest')
+                      ? 'bg-amber-500/15 text-[#F59E0B]'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4 text-[#F59E0B]" />
+                  <span>{t.nav.newReleases}</span>
+                </Link>
+                <Link
+                  to="/orders"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
+                    location.pathname === '/orders'
+                      ? 'bg-amber-500/15 text-[#F59E0B]'
+                      : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <ShoppingBag className="w-4 h-4 text-[#F59E0B]" />
+                  <span>Buyurtmalarim</span>
+                </Link>
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold text-[#F59E0B] bg-amber-500/10 hover:bg-amber-500/20 transition cursor-pointer"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-[#F59E0B]" />
+                    <span>{t.nav.admin}</span>
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}
