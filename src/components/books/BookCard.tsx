@@ -59,10 +59,10 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white dark:bg-[#161a23] rounded-2xl p-3 sm:p-4 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+      className="group relative bg-white dark:bg-[#161a23] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
     >
       {/* Top Cover Image Container */}
-      <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-3.5 shadow-inner">
+      <div className="relative aspect-[3/4] w-full rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-2 sm:mb-3.5 shadow-inner">
         <Link to={`/books/${book.id}`}>
           <img
             src={book.coverImage}
@@ -144,25 +144,25 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           </div>
 
           <Link to={`/books/${book.id}`}>
-            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-[15px] sm:text-base line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug tracking-tight">
+            <h3 className="font-serif font-bold text-slate-900 dark:text-white text-xs sm:text-[15px] sm:text-base line-clamp-2 hover:text-amber-600 dark:hover:text-amber-400 transition leading-snug tracking-tight">
               {book.title}
             </h3>
           </Link>
 
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium truncate">
+          <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 font-medium truncate">
             {book.author}
           </p>
         </div>
 
         {/* Price & Add to Cart button */}
-        <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-1.5 sm:gap-2">
           <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">
+            <div className="flex items-baseline gap-1 sm:gap-1.5">
+              <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white tracking-tight">
                 ${book.price.toFixed(2)}
               </span>
               {book.oldPrice && (
-                <span className="text-xs text-slate-400 line-through">
+                <span className="text-[10px] sm:text-xs text-slate-400 line-through">
                   ${book.oldPrice.toFixed(2)}
                 </span>
               )}
@@ -172,7 +172,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           <button
             onClick={handleAddToCart}
             disabled={book.stock <= 0}
-            className={`p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
+            className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
               isAddedAnim
                 ? 'bg-emerald-500 text-white scale-95'
                 : inCart

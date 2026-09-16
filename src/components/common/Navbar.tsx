@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
                 <span className="font-serif font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition">
                   Kitob<span className="text-[#F59E0B]">Shop</span>
                 </span>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
+                <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
                   Premium Bookstore
                 </span>
               </div>
@@ -141,7 +141,7 @@ export const Navbar: React.FC = () => {
             </nav>
 
             {/* Search, Utilities & Actions */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1 sm:gap-2.5">
               {/* Quick Search Trigger */}
               <button
                 onClick={() => {
@@ -500,12 +500,12 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-lg">
         <div className="flex items-center justify-around">
           <Link
             to="/"
-            className={`flex flex-col items-center gap-1 text-xs ${
-              location.pathname === '/' ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-slate-500 dark:text-slate-400'
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+              location.pathname === '/' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <BookOpen className="w-5 h-5" />
@@ -513,8 +513,8 @@ export const Navbar: React.FC = () => {
           </Link>
           <Link
             to="/books"
-            className={`flex flex-col items-center gap-1 text-xs ${
-              location.pathname === '/books' ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-slate-500 dark:text-slate-400'
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+              location.pathname === '/books' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <Search className="w-5 h-5" />
@@ -522,8 +522,8 @@ export const Navbar: React.FC = () => {
           </Link>
           <Link
             to="/wishlist"
-            className={`flex flex-col items-center gap-1 text-xs relative ${
-              location.pathname === '/wishlist' ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-slate-500 dark:text-slate-400'
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition relative ${
+              location.pathname === '/wishlist' ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <Heart className="w-5 h-5" />
@@ -536,11 +536,11 @@ export const Navbar: React.FC = () => {
           </Link>
           <button
             onClick={openCart}
-            className="flex flex-col items-center gap-1 text-xs text-slate-500 dark:text-slate-400 relative"
+            className="flex flex-col items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 relative transition hover:text-[#F59E0B]"
           >
             <ShoppingBag className="w-5 h-5" />
             {totalItemsCount > 0 && (
-              <span className="absolute -top-1 right-0 w-4 h-4 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+              <span className="absolute -top-1 right-0 w-4 h-4 bg-[#F59E0B] text-[#0F172A] text-[10px] font-bold rounded-full flex items-center justify-center">
                 {totalItemsCount}
               </span>
             )}
@@ -548,8 +548,8 @@ export const Navbar: React.FC = () => {
           </button>
           <Link
             to={isAuthenticated ? "/profile" : "/login"}
-            className={`flex flex-col items-center gap-1 text-xs ${
-              location.pathname.startsWith('/profile') ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-slate-500 dark:text-slate-400'
+            className={`flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+              location.pathname.startsWith('/profile') || location.pathname.startsWith('/login') ? 'text-[#F59E0B] font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <User className="w-5 h-5" />

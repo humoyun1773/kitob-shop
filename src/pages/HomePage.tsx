@@ -62,7 +62,7 @@ export const HomePage: React.FC = () => {
                 <span>{t.hero.badge}</span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                 {t.hero.title1}{' '}
                 <span className="bg-gradient-to-r from-[#F59E0B] via-amber-400 to-[#d97706] bg-clip-text text-transparent italic">
                   {t.hero.titleHighlight}
@@ -220,7 +220,7 @@ export const HomePage: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
             {featuredBooks.map(book => (
               <BookCard
                 key={book.id}
@@ -253,7 +253,7 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
           {bestsellers.map(book => (
             <BookCard
               key={book.id}
@@ -286,7 +286,7 @@ export const HomePage: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
             {trendingBooks.map(book => (
               <BookCard
                 key={book.id}
@@ -300,7 +300,7 @@ export const HomePage: React.FC = () => {
 
       {/* 43. RECOMMENDATION ENGINE (Requirement #6, #43) */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-amber-500/10 via-rose-500/5 to-purple-500/10 border border-amber-500/20 shadow-sm">
+        <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-amber-500/10 via-rose-500/5 to-purple-500/10 border border-amber-500/20 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 mb-1">
@@ -319,7 +319,7 @@ export const HomePage: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
             {recommendedBooks.map(book => (
               <BookCard
                 key={book.id}

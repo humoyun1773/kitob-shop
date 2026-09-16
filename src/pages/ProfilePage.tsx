@@ -69,13 +69,13 @@ export const ProfilePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-32 lg:pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/5 p-6 sm:p-8 rounded-3xl border border-amber-500/20 mb-8 flex flex-col sm:flex-row items-center gap-6">
         <img
           src={user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}
           alt={user.name}
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-xl"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-lg border-2 border-white dark:border-slate-800"
         />
         <div className="text-center sm:text-left flex-1">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
@@ -106,10 +106,10 @@ export const ProfilePage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         
         {/* Navigation Tabs */}
-        <div className="space-y-2">
+        <div className="flex md:flex-col gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
           <button
             onClick={() => setActiveTab('profile')}
-            className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-3 transition ${
+            className={`flex-shrink-0 md:w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-2.5 transition whitespace-nowrap ${
               activeTab === 'profile'
                 ? 'bg-amber-500 text-white shadow-md'
                 : 'bg-white dark:bg-[#161a23] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -121,7 +121,7 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={() => setActiveTab('addresses')}
-            className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-3 transition ${
+            className={`flex-shrink-0 md:w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-2.5 transition whitespace-nowrap ${
               activeTab === 'addresses'
                 ? 'bg-amber-500 text-white shadow-md'
                 : 'bg-white dark:bg-[#161a23] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -133,7 +133,7 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={() => setActiveTab('settings')}
-            className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-3 transition ${
+            className={`flex-shrink-0 md:w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-2.5 transition whitespace-nowrap ${
               activeTab === 'settings'
                 ? 'bg-amber-500 text-white shadow-md'
                 : 'bg-white dark:bg-[#161a23] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -145,7 +145,7 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={logout}
-            className="w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-3 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition pt-3"
+            className="flex-shrink-0 md:w-full text-left px-4 py-3 rounded-2xl text-xs font-semibold flex items-center gap-2.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition whitespace-nowrap"
           >
             <LogOut className="w-4 h-4" />
             <span>Profildan chiqish</span>

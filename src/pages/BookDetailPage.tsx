@@ -113,10 +113,10 @@ export const BookDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      {/* Breadcrumb navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+    <div className="min-h-screen pt-24 pb-32 lg:pb-20">
+      {/* Breadcrumbs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 border-b border-slate-200/60 dark:border-slate-800/60">
+        <nav className="flex items-center gap-2 text-xs text-slate-500 overflow-x-auto whitespace-nowrap">
           <Link to="/" className="hover:text-amber-500 transition">Bosh sahifa</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <Link to="/books" className="hover:text-amber-500 transition">Kitoblar</Link>
@@ -140,7 +140,7 @@ export const BookDetailPage: React.FC = () => {
                 transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
                 transition: 'transform 0.1s ease-out'
               }}
-              className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 dark:bg-[#161a23] shadow-2xl border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center p-8 group cursor-zoom-in"
+              className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 dark:bg-[#161a23] shadow-2xl border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center p-4 sm:p-8 group cursor-zoom-in"
             >
               <img
                 src={activeImage || book.coverImage}
@@ -526,7 +526,7 @@ export const BookDetailPage: React.FC = () => {
             <h3 className="font-serif font-bold text-2xl text-slate-900 dark:text-white mb-8">
               {t.detail.similarBooks}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
               {similarBooks.map(b => (
                 <BookCard key={b.id} book={b} />
               ))}
