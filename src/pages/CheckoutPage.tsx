@@ -9,7 +9,11 @@ import {
   ArrowRight, 
   ArrowLeft, 
   Lock, 
-  ShoppingBag
+  ShoppingBag,
+  ChevronDown,
+  Building2,
+  Clock,
+  BookmarkCheck
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -17,6 +21,226 @@ import { useOrders } from '../context/OrderContext';
 import { useToast } from '../context/ToastContext';
 import { useLanguage } from '../context/LanguageContext';
 import { DeliveryAddress, DeliveryMethodType } from '../types/order';
+
+const COUNTRIES_LIST = [
+  "O'zbekiston",
+  "Qozog'iston",
+  "Qirg'iziston",
+  "Tojikiston",
+  "Rossiya",
+  "Turkiya",
+  "Birlashgan Arab Amirliklari",
+  "AQSh",
+  "Boshqa davlat"
+];
+
+interface RegionData {
+  name: string;
+  postalCode: string;
+  districts: string[];
+}
+
+const REGIONS_DATA: Record<string, RegionData> = {
+  'Toshkent shahri': {
+    name: 'Toshkent shahri',
+    postalCode: '100000',
+    districts: [
+      'Toshkent (Markaz)',
+      'Yunusobod tumani',
+      'Mirzo Ulug‘bek tumani',
+      'Chilonzor tumani',
+      'Yakkasaroy tumani',
+      'Mirobod tumani',
+      'Shayxontohur tumani',
+      'Olmazor tumani',
+      'Uchtepa tumani',
+      'Sergeli tumani',
+      'Yangihayot tumani',
+      'Yashnobod tumani',
+      'Bektemir tumani'
+    ]
+  },
+  'Toshkent viloyati': {
+    name: 'Toshkent viloyati',
+    postalCode: '110000',
+    districts: [
+      'Chirchiq shahri',
+      'Olmaliq shahri',
+      'Angren shahri',
+      'Bekobod shahri',
+      'Nurafshon shahri',
+      'Yangiyo‘l shahri',
+      'Bo‘stonliq tumani',
+      'Qibray tumani',
+      'Zangiota tumani',
+      'Yangiyo‘l tumani',
+      'Toshkent tumani',
+      'Parkent tumani',
+      'O‘rtachirchiq tumani',
+      'Chinoz tumani'
+    ]
+  },
+  'Samarqand viloyati': {
+    name: 'Samarqand viloyati',
+    postalCode: '140100',
+    districts: [
+      'Samarqand shahri',
+      'Kattaqo‘rg‘on shahri',
+      'Urgut tumani',
+      'Pastdarg‘om tumani',
+      'Samarqand tumani',
+      'Bulung‘ur tumani',
+      'Jomboy tumani',
+      'Ishtixon tumani',
+      'Toyloq tumani'
+    ]
+  },
+  'Buxoro viloyati': {
+    name: 'Buxoro viloyati',
+    postalCode: '200100',
+    districts: [
+      'Buxoro shahri',
+      'Kogon shahri',
+      'G‘ijduvon tumani',
+      'Vobkent tumani',
+      'Jondor tumani',
+      'Romitan tumani',
+      'Shofirkon tumani',
+      'Qorako‘l tumani'
+    ]
+  },
+  'Andijon viloyati': {
+    name: 'Andijon viloyati',
+    postalCode: '170100',
+    districts: [
+      'Andijon shahri',
+      'Asaka shahri',
+      'Xonobod shahri',
+      'Shahrixon tumani',
+      'Andijon tumani',
+      'Baliqchi tumani',
+      'Buloqboshi tumani',
+      'Marhamat tumani'
+    ]
+  },
+  'Farg‘ona viloyati': {
+    name: 'Farg‘ona viloyati',
+    postalCode: '150100',
+    districts: [
+      'Farg‘ona shahri',
+      'Marg‘ilon shahri',
+      'Qo‘qon shahri',
+      'Quvasoy shahri',
+      'Oltiariq tumani',
+      'Rishton tumani',
+      'Bog‘dod tumani',
+      'Quva tumani'
+    ]
+  },
+  'Namangan viloyati': {
+    name: 'Namangan viloyati',
+    postalCode: '160100',
+    districts: [
+      'Namangan shahri',
+      'Chortoq tumani',
+      'Chust tumani',
+      'Kosonsoy tumani',
+      'Pop tumani',
+      'To‘raqo‘rg‘on tumani',
+      'Uchqo‘rg‘on tumani'
+    ]
+  },
+  'Qashqadaryo viloyati': {
+    name: 'Qashqadaryo viloyati',
+    postalCode: '180100',
+    districts: [
+      'Qarshi shahri',
+      'Shahrisabz shahri',
+      'Kitob tumani',
+      'Koson tumani',
+      'Muborak tumani',
+      'Chiroqchi tumani',
+      'G‘uzor tumani',
+      'Yakkabog‘ tumani'
+    ]
+  },
+  'Surxondaryo viloyati': {
+    name: 'Surxondaryo viloyati',
+    postalCode: '190100',
+    districts: [
+      'Termiz shahri',
+      'Denov tumani',
+      'Boysun tumani',
+      'Sherobod tumani',
+      'Jarqo‘rg‘on tumani',
+      'Sho‘rchi tumani',
+      'Qumqo‘rg‘on tumani'
+    ]
+  },
+  'Xorazm viloyati': {
+    name: 'Xorazm viloyati',
+    postalCode: '220100',
+    districts: [
+      'Urganch shahri',
+      'Xiva shahri',
+      'Xonqa tumani',
+      'Gurlan tumani',
+      'Shovot tumani',
+      'Hazorasp tumani',
+      'Qo‘shko‘pir tumani'
+    ]
+  },
+  'Navoiy viloyati': {
+    name: 'Navoiy viloyati',
+    postalCode: '210100',
+    districts: [
+      'Navoiy shahri',
+      'Zarafshon shahri',
+      'Karmana tumani',
+      'Qiziltepa tumani',
+      'Xatirchi tumani',
+      'Nurota tumani',
+      'Uchquduq tumani'
+    ]
+  },
+  'Jizzax viloyati': {
+    name: 'Jizzax viloyati',
+    postalCode: '130100',
+    districts: [
+      'Jizzax shahri',
+      'Zomin tumani',
+      'G‘allaorol tumani',
+      'Baxmal tumani',
+      'Do‘stlik tumani',
+      'Sharof Rashidov tumani'
+    ]
+  },
+  'Sirdaryo viloyati': {
+    name: 'Sirdaryo viloyati',
+    postalCode: '120100',
+    districts: [
+      'Guliston shahri',
+      'Yangiyer shahri',
+      'Shirin shahri',
+      'Boyovut tumani',
+      'Sirdaryo tumani',
+      'Xovos tumani'
+    ]
+  },
+  'Qoraqalpog‘iston Respublikasi': {
+    name: 'Qoraqalpog‘iston Respublikasi',
+    postalCode: '230100',
+    districts: [
+      'Nukus shahri',
+      'Beruniy tumani',
+      'To‘rtko‘l tumani',
+      'Xo‘jayli tumani',
+      'Qo‘ng‘irot tumani',
+      'Chimboy tumani',
+      'Mo‘ynoq tumani'
+    ]
+  }
+};
 
 export const CheckoutPage: React.FC = () => {
   const { items, subtotal, discountAmount, deliveryFee, tax, total, appliedCoupon, clearCart } = useCart();
@@ -39,8 +263,8 @@ export const CheckoutPage: React.FC = () => {
   const [address, setAddress] = useState<DeliveryAddress>({
     country: defaultAddr?.country || "O'zbekiston",
     region: defaultAddr?.region || 'Toshkent shahri',
-    city: defaultAddr?.city || 'Toshkent',
-    district: defaultAddr?.district || 'Yunusobod',
+    city: defaultAddr?.city || 'Toshkent (Markaz)',
+    district: defaultAddr?.district || 'Yunusobod tumani',
     street: defaultAddr?.street || "Amir Temur ko'chasi",
     house: defaultAddr?.house || '42-uy',
     apartment: defaultAddr?.apartment || '15-xonadon',
@@ -48,6 +272,58 @@ export const CheckoutPage: React.FC = () => {
     recipientName: defaultAddr?.recipientName || user?.name || 'Humoyun Mirzo',
     recipientPhone: defaultAddr?.recipientPhone || user?.phone || '+998 90 123 45 67'
   });
+
+  const [housingType, setHousingType] = useState<'apartment' | 'house' | 'office'>('apartment');
+  const [deliveryTimeSlot, setDeliveryTimeSlot] = useState<'any' | 'morning' | 'afternoon' | 'evening'>('any');
+  const [isCustomCity, setIsCustomCity] = useState(false);
+
+  const handleCountryChange = (newCountry: string) => {
+    if (newCountry === "O'zbekiston") {
+      setAddress(prev => ({
+        ...prev,
+        country: newCountry,
+        region: 'Toshkent shahri',
+        city: 'Toshkent (Markaz)',
+        district: 'Yunusobod tumani',
+        postalCode: '100000'
+      }));
+      setIsCustomCity(false);
+    } else {
+      setAddress(prev => ({
+        ...prev,
+        country: newCountry,
+        region: '',
+        city: '',
+        district: '',
+        postalCode: ''
+      }));
+      setIsCustomCity(true);
+    }
+  };
+
+  const handleRegionChange = (newRegion: string) => {
+    const regionInfo = REGIONS_DATA[newRegion];
+    const defaultDistrict = regionInfo?.districts[0] || '';
+    const newPostal = regionInfo?.postalCode || address.postalCode;
+    setAddress(prev => ({
+      ...prev,
+      region: newRegion,
+      city: defaultDistrict,
+      district: defaultDistrict,
+      postalCode: newPostal
+    }));
+    setIsCustomCity(false);
+  };
+
+  const handleDistrictChange = (value: string) => {
+    if (value === 'Boshqa') {
+      setIsCustomCity(true);
+      setAddress(prev => ({ ...prev, city: '', district: '' }));
+    } else {
+      setIsCustomCity(false);
+      setAddress(prev => ({ ...prev, city: value, district: value }));
+    }
+  };
 
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethodType>('express');
 
@@ -274,36 +550,153 @@ export const CheckoutPage: React.FC = () => {
           {/* STEP 2: ADDRESS */}
           {currentStep === 2 && (
             <div className="space-y-4 animate-in fade-in">
-              <h3 className="font-serif font-bold text-lg text-slate-900 dark:text-white mb-2">
-                2. Yetkazib berish manzili
-              </h3>
+              <div className="flex items-center justify-between">
+                <h3 className="font-serif font-bold text-lg text-slate-900 dark:text-white">
+                  2. Yetkazib berish manzili
+                </h3>
+              </div>
+
+              {/* Quick Select from Saved Addresses if available */}
+              {user?.savedAddresses && user.savedAddresses.length > 0 && (
+                <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                    <BookmarkCheck className="w-4 h-4 text-amber-500" />
+                    <span>Saqlangan manzillardan tanlash:</span>
+                  </div>
+                  <div className="relative min-w-[260px]">
+                    <select
+                      onChange={e => {
+                        const idx = parseInt(e.target.value);
+                        if (!isNaN(idx) && user.savedAddresses[idx]) {
+                          setAddress(user.savedAddresses[idx]);
+                          setIsCustomCity(false);
+                        }
+                      }}
+                      className="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-9 cursor-pointer shadow-sm font-medium"
+                    >
+                      <option value="">-- Saqlangan manzilni tanlang --</option>
+                      {user.savedAddresses.map((addr, idx) => (
+                        <option key={idx} value={idx}>
+                          {addr.city}, {addr.street} ({addr.recipientName})
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-3.5 h-3.5 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                  </div>
+                </div>
+              )}
               
+              {/* Row 1: Mamlakat & Viloyat/Hudud Selects */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     {t.checkout.country}
                   </label>
-                  <input
-                    type="text"
-                    value={address.country}
-                    onChange={e => setAddress({ ...address, country: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
-                  />
+                  <div className="relative">
+                    <select
+                      value={address.country}
+                      onChange={e => handleCountryChange(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-10 cursor-pointer transition font-medium"
+                    >
+                      {COUNTRIES_LIST.map(c => (
+                        <option key={c} value={c}>
+                          {c === "O'zbekiston" ? "🇺🇿 O'zbekiston" : c === "Qozog'iston" ? "🇰🇿 Qozog'iston" : c === "Qirg'iziston" ? "🇰🇬 Qirg'iziston" : c === "Tojikiston" ? "🇹🇯 Tojikiston" : c === "Rossiya" ? "🇷🇺 Rossiya" : c === "Turkiya" ? "🇹🇷 Turkiya" : c === "Birlashgan Arab Amirliklari" ? "🇦🇪 BAA (Dubay)" : c === "AQSh" ? "🇺🇸 AQSh" : c}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                  </div>
                 </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    {t.checkout.region}
+                  </label>
+                  {address.country === "O'zbekiston" ? (
+                    <div className="relative">
+                      <select
+                        value={address.region}
+                        onChange={e => handleRegionChange(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-10 cursor-pointer transition font-medium"
+                      >
+                        {Object.keys(REGIONS_DATA).map(reg => (
+                          <option key={reg} value={reg}>{reg}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                    </div>
+                  ) : (
+                    <input
+                      type="text"
+                      value={address.region}
+                      onChange={e => setAddress({ ...address, region: e.target.value })}
+                      placeholder="Viloyat / Shtat"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Row 2: Shahar / Tuman Select & Postal Code */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     {t.checkout.city}
                   </label>
+                  {address.country === "O'zbekiston" && REGIONS_DATA[address.region] && !isCustomCity ? (
+                    <div className="relative">
+                      <select
+                        value={address.city}
+                        onChange={e => handleDistrictChange(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-10 cursor-pointer transition font-medium"
+                      >
+                        {REGIONS_DATA[address.region]?.districts.map(dist => (
+                          <option key={dist} value={dist}>{dist}</option>
+                        ))}
+                        <option value="Boshqa">Boshqa tuman / shahar (qo'lda kiritish)...</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                    </div>
+                  ) : (
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={address.city}
+                        onChange={e => setAddress({ ...address, city: e.target.value, district: e.target.value })}
+                        placeholder="Toshkent yoki tuman nomi"
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                      />
+                      {address.country === "O'zbekiston" && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsCustomCity(false);
+                            handleRegionChange(address.region || 'Toshkent shahri');
+                          }}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-amber-600 dark:text-amber-400 hover:underline"
+                        >
+                          Ro'yxatdan tanlash
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    {t.checkout.postalCode}
+                  </label>
                   <input
                     type="text"
-                    value={address.city}
-                    onChange={e => setAddress({ ...address, city: e.target.value })}
-                    placeholder="Toshkent"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
+                    value={address.postalCode}
+                    onChange={e => setAddress({ ...address, postalCode: e.target.value })}
+                    placeholder="100084"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
                   />
                 </div>
               </div>
 
+              {/* Row 3: Ko'cha va Uy raqami */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
@@ -314,7 +707,7 @@ export const CheckoutPage: React.FC = () => {
                     value={address.street}
                     onChange={e => setAddress({ ...address, street: e.target.value })}
                     placeholder="Amir Temur shoh ko'chasi"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
                   />
                 </div>
                 <div>
@@ -326,11 +719,12 @@ export const CheckoutPage: React.FC = () => {
                     value={address.house}
                     onChange={e => setAddress({ ...address, house: e.target.value })}
                     placeholder="42-uy"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
                   />
                 </div>
               </div>
 
+              {/* Row 4: Kvartira & Turar-joy turi Select */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
@@ -340,21 +734,46 @@ export const CheckoutPage: React.FC = () => {
                     type="text"
                     value={address.apartment || ''}
                     onChange={e => setAddress({ ...address, apartment: e.target.value })}
-                    placeholder="15-kvartira"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
+                    placeholder="15-kvartira / xonadon"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    {t.checkout.postalCode}
+                    Bino / Turar-joy turi
                   </label>
-                  <input
-                    type="text"
-                    value={address.postalCode}
-                    onChange={e => setAddress({ ...address, postalCode: e.target.value })}
-                    placeholder="100084"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm"
-                  />
+                  <div className="relative">
+                    <select
+                      value={housingType}
+                      onChange={e => setHousingType(e.target.value as any)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-10 cursor-pointer transition font-medium"
+                    >
+                      <option value="apartment">🏢 Ko'p qavatli bino (Kvartira)</option>
+                      <option value="house">🏡 Xususiy hovli / Yer uy</option>
+                      <option value="office">🏢 Ofis / Biznes markaz</option>
+                    </select>
+                    <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 5: Qulay yetkazish vaqti Select */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  Yetkazib berish uchun qulay vaqt
+                </label>
+                <div className="relative">
+                  <select
+                    value={deliveryTimeSlot}
+                    onChange={e => setDeliveryTimeSlot(e.target.value as any)}
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-amber-500 appearance-none pr-10 cursor-pointer transition font-medium"
+                  >
+                    <option value="any">🕒 Istalgan vaqtda (09:00 - 21:00)</option>
+                    <option value="morning">🌅 Ertalab (09:00 - 13:00)</option>
+                    <option value="afternoon">☀️ Tushdan keyin (13:00 - 18:00)</option>
+                    <option value="evening">🌙 Kechki payt (18:00 - 21:00)</option>
+                  </select>
+                  <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
                 </div>
               </div>
 
