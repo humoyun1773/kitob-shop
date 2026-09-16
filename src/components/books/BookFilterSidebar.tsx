@@ -1,7 +1,8 @@
 import React from 'react';
-import { RotateCcw, Filter, Star, Check } from 'lucide-react';
+import { RotateCcw, Filter, Star, Check, Globe } from 'lucide-react';
 import { BookCategory, BookFormat } from '../../types/book';
 import { useLanguage } from '../../context/LanguageContext';
+import { CustomSelect, CustomSelectOption } from '../common/CustomSelect';
 
 export interface FilterState {
   category: string;
@@ -34,11 +35,11 @@ export const BookFilterSidebar: React.FC<BookFilterSidebarProps> = ({
   };
 
   const formats: BookFormat[] = ['Paperback', 'Hardcover', 'E-book', 'Audiobook'];
-  const languages = [
-    { code: '', label: 'Barcha tillar' },
-    { code: 'UZ', label: "O'zbekcha 🇺🇿" },
-    { code: 'RU', label: 'Русский 🇷🇺' },
-    { code: 'EN', label: 'English 🇺🇸' }
+  const languageOptions: CustomSelectOption[] = [
+    { value: '', label: 'Barcha tillar', icon: <Globe className="w-3.5 h-3.5 text-[#F59E0B]" /> },
+    { value: 'UZ', label: "O'zbekcha", badge: 'UZ' },
+    { value: 'RU', label: 'Русский', badge: 'RU' },
+    { value: 'EN', label: 'English', badge: 'EN' }
   ];
 
   return (
@@ -179,17 +180,12 @@ export const BookFilterSidebar: React.FC<BookFilterSidebarProps> = ({
         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
           {t.filter.language}
         </h4>
-        <select
+        <CustomSelect
           value={filters.language}
-          onChange={e => onChange({ ...filters, language: e.target.value })}
-          className="w-full py-2 px-3 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500"
-        >
-          {languages.map(l => (
-            <option key={l.code} value={l.code}>
-              {l.label}
-            </option>
-          ))}
-        </select>
+          onChange={val => onChange({ ...filters, language: val })}
+          options={languageOptions}
+          placeholder="Barcha tillar"
+        />
       </div>
 
       {/* In Stock Toggle */}

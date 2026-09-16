@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { BookCard } from '../components/books/BookCard';
 import { BookFilterSidebar, FilterState } from '../components/books/BookFilterSidebar';
 import { QuickViewModal } from '../components/common/QuickViewModal';
+import { CustomSelect, CustomSelectOption } from '../components/common/CustomSelect';
 import { SEO } from '../components/common/SEO';
 import { Book, BookCategory } from '../types/book';
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
@@ -197,18 +198,20 @@ export const BooksPage: React.FC = () => {
 
             {/* Sorting Dropdown */}
             <div className="flex items-center gap-2">
-              <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
-              <select
+              <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
+              <CustomSelect
                 value={filters.sortBy}
-                onChange={e => setFilters({ ...filters, sortBy: e.target.value })}
-                className="py-1.5 px-3 rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500"
-              >
-                <option value="popular">{t.filter.sortPopular}</option>
-                <option value="newest">{t.filter.sortNewest}</option>
-                <option value="price-asc">{t.filter.sortPriceAsc}</option>
-                <option value="price-desc">{t.filter.sortPriceDesc}</option>
-                <option value="rating">{t.filter.sortRating}</option>
-              </select>
+                onChange={val => setFilters({ ...filters, sortBy: val })}
+                options={[
+                  { value: 'popular', label: t.filter.sortPopular },
+                  { value: 'newest', label: t.filter.sortNewest },
+                  { value: 'price-asc', label: t.filter.sortPriceAsc },
+                  { value: 'price-desc', label: t.filter.sortPriceDesc },
+                  { value: 'rating', label: t.filter.sortRating }
+                ]}
+                className="w-40 sm:w-48"
+                buttonClassName="py-1.5 px-3 rounded-xl bg-white dark:bg-[#1E293B]"
+              />
             </div>
           </div>
         </div>
