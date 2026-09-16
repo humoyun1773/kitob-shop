@@ -482,7 +482,7 @@ export const Navbar: React.FC = () => {
                   Qidirish
                 </button>
               </form>
-              <div className="flex items-center gap-2 mt-2 px-1 text-xs text-slate-500">
+              <div className="flex flex-wrap items-center gap-2 mt-2 px-1 text-xs text-slate-500">
                 <span>Ommabop qidiruvlar:</span>
                 <button
                   type="button"

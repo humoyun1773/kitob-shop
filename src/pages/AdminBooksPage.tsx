@@ -265,8 +265,14 @@ export const AdminBooksPage: React.FC = () => {
 
       {/* Add / Edit Book Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border border-slate-200 dark:border-slate-700">
+        <div 
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto"
+        >
+          <div 
+            onClick={e => e.stopPropagation()}
+            className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border border-slate-200 dark:border-slate-700"
+          >
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
               <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white">
                 {editingBookId ? 'Kitobni tahrirlash' : "Yangi kitob qo'shish"}

@@ -150,43 +150,43 @@ export const HomePage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="lg:col-span-5 relative flex justify-center items-center py-6"
             >
-              <div className="relative w-full max-w-sm sm:max-w-md h-[420px] flex items-center justify-center">
+              <div className="relative w-full max-w-[300px] sm:max-w-md h-[340px] sm:h-[420px] flex items-center justify-center mx-auto">
                 {/* Decorative circle glow */}
-                <div className="absolute w-72 h-72 rounded-full border border-amber-500/20 bg-amber-500/5 animate-pulse" />
+                <div className="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border border-amber-500/20 bg-amber-500/5 animate-pulse" />
 
                 {/* Book 1 - Atomic Habits (Center floating) */}
-                <div className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-4 cursor-pointer">
-                  <div className="w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-slate-700/80 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                <div className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-2 sm:-translate-y-4 cursor-pointer">
+                  <div className="w-36 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-slate-700/80 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                     <img
                       src={books[0]?.coverImage || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80'}
                       alt="Atomic Habits"
-                      className="w-full h-64 sm:h-72 object-cover"
+                      className="w-full h-52 sm:h-72 object-cover"
                     />
-                    <div className="p-3 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md">
-                      <p className="font-serif font-bold text-xs text-slate-900 dark:text-white truncate">Atomic Habits</p>
-                      <p className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">$14.99 • ⭐ 4.9</p>
+                    <div className="p-2 sm:p-3 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md">
+                      <p className="font-serif font-bold text-[11px] sm:text-xs text-slate-900 dark:text-white truncate">Atomic Habits</p>
+                      <p className="text-[9px] sm:text-[10px] text-amber-600 dark:text-amber-400 font-semibold">$14.99 • ⭐ 4.9</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Book 2 - Psychology of Money (Floating Left) */}
-                <div className="absolute -left-2 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium cursor-pointer">
-                  <div className="w-36 sm:w-40 rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
+                <div className="absolute -left-3 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium cursor-pointer">
+                  <div className="w-28 sm:w-40 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
                       src={books[1]?.coverImage || 'https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=800&q=80'}
                       alt="Psychology of Money"
-                      className="w-full h-48 sm:h-56 object-cover"
+                      className="w-full h-40 sm:h-56 object-cover"
                     />
                   </div>
                 </div>
 
                 {/* Book 3 - O'tkan Kunlar (Floating Right) */}
-                <div className="absolute -right-2 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast cursor-pointer">
-                  <div className="w-36 sm:w-40 rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
+                <div className="absolute -right-3 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast cursor-pointer">
+                  <div className="w-28 sm:w-40 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
                       src={books[2]?.coverImage || 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=800&q=80'}
                       alt="O'tkan Kunlar"
-                      className="w-full h-48 sm:h-56 object-cover"
+                      className="w-full h-40 sm:h-56 object-cover"
                     />
                   </div>
                 </div>

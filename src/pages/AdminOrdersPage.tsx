@@ -181,8 +181,14 @@ export const AdminOrdersPage: React.FC = () => {
 
       {/* Order Detail Modal */}
       {selectedOrderDetails && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border border-slate-200 dark:border-slate-700">
+        <div 
+          onClick={() => setSelectedOrderDetails(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto"
+        >
+          <div 
+            onClick={e => e.stopPropagation()}
+            className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border border-slate-200 dark:border-slate-700"
+          >
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <span className="text-xs uppercase font-bold text-amber-500 tracking-wider">Buyurtma Tafsiloti</span>
@@ -199,7 +205,7 @@ export const AdminOrdersPage: React.FC = () => {
             </div>
 
             <div className="space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900">
                   <h4 className="font-bold text-slate-500 uppercase text-[10px] mb-2">Mijoz ma'lumotlari:</h4>
                   <p className="font-semibold text-slate-900 dark:text-white">{selectedOrderDetails.customerName}</p>

@@ -266,8 +266,14 @@ export const BooksPage: React.FC = () => {
 
       {/* Mobile Filters Modal */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm lg:hidden animate-in fade-in">
-          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1E293B] rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+        <div 
+          onClick={() => setIsMobileFilterOpen(false)}
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/60 backdrop-blur-sm lg:hidden animate-in fade-in"
+        >
+          <div 
+            onClick={e => e.stopPropagation()}
+            className="w-full sm:max-w-md max-h-[85vh] overflow-y-auto bg-white dark:bg-[#1E293B] rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-700"
+          >
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-serif font-bold text-base text-slate-900 dark:text-white">
                 {t.filter.title}

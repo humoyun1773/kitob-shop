@@ -52,7 +52,7 @@ export const App: React.FC = () => {
                           <ScrollToTop />
                           <div className="flex flex-col min-h-screen">
                             <Navbar />
-                            <main className="flex-grow">
+                            <main className="flex-grow pb-16 lg:pb-0">
                               <Routes>
                                 <Route path="/" element={<HomePage />} />
                                 <Route path="/books" element={<BooksPage />} />
