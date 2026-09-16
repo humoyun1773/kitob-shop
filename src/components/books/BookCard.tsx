@@ -59,7 +59,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white dark:bg-[#161a23] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+      className="group relative bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-700/70 hover:border-[#F59E0B]/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
     >
       {/* Top Cover Image Container */}
       <div className="relative aspect-[3/4] w-full rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-2 sm:mb-3.5 shadow-inner">
@@ -180,7 +180,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
                 ? 'bg-emerald-500 text-white scale-95'
                 : inCart
                 ? 'bg-[#F59E0B]/15 text-amber-800 dark:bg-[#F59E0B]/20 dark:text-[#F59E0B]'
-                : 'bg-[#0F172A] text-white hover:bg-[#F59E0B] hover:text-[#0F172A] dark:bg-[#F59E0B] dark:text-[#0F172A] dark:hover:bg-amber-400 font-semibold'
+                : 'bg-[#F59E0B] text-[#0F172A] hover:bg-amber-400 font-bold shadow-md shadow-[#F59E0B]/20'
             } disabled:opacity-50 disabled:cursor-not-allowed`}
             title={inCart ? t.bookCard.inCart : t.bookCard.addToCart}
           >

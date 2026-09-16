@@ -55,9 +55,9 @@ export const HomePage: React.FC = () => {
       />
 
       {/* 2. CINEMATIC HERO SECTION (Requirement #2, #41) */}
-      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-[#F59E0B]/5 via-amber-500/5 to-transparent">
+      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-[#0F172A] via-[#1E293B]/40 to-[#0F172A]">
         {/* Subtle background glow elements */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/15 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/20 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -92,7 +92,7 @@ export const HomePage: React.FC = () => {
 
                 <Link
                   to="/books?category=Classics"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#1E293B] border border-slate-700/80 text-slate-100 font-semibold text-sm hover:bg-[#161F36] hover:border-[#F59E0B]/50 transition flex items-center justify-center gap-2"
                 >
                   <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                   <span>{t.hero.browseCollection}</span>
@@ -207,7 +207,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* FEATURED BOOKS SECTION */}
-      <section className="py-16 bg-slate-50/60 dark:bg-[#0F172A]/70 border-y border-slate-200/50 dark:border-slate-800/80">
+      <section className="py-16 bg-[#0F172A] border-y border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>

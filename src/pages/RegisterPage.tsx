@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, User, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -26,22 +26,22 @@ export const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white dark:bg-[#161a23] p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-xl space-y-6">
+      <div className="w-full max-w-md bg-[#1E293B] p-8 rounded-3xl border border-slate-700/80 shadow-2xl space-y-6">
         
         {/* Header */}
         <div className="text-center">
           <Link to="/" className="inline-flex items-center gap-2 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] text-[#0F172A] flex items-center justify-center font-bold shadow-md">
               <BookOpen className="w-5 h-5" />
             </div>
-            <span className="font-serif font-bold text-2xl text-slate-900 dark:text-white">
-              Kitob<span className="text-amber-500">Shop</span>
+            <span className="font-serif font-bold text-2xl text-white">
+              Kitob<span className="text-[#F59E0B]">Shop</span>
             </span>
           </Link>
-          <h2 className="font-serif font-bold text-xl text-slate-900 dark:text-white">
+          <h2 className="font-serif font-bold text-xl text-white">
             Ro'yxatdan o'tish
           </h2>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             Yangi hisob yaratib saralangan kitoblardan bahramand bo'ling
           </p>
         </div>
@@ -49,7 +49,7 @@ export const RegisterPage: React.FC = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block font-semibold text-slate-300 mb-1">
               To'liq ism-sharif
             </label>
             <div className="relative">
@@ -60,13 +60,13 @@ export const RegisterPage: React.FC = () => {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Humoyun Mirzo"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block font-semibold text-slate-300 mb-1">
               Elektron pochta
             </label>
             <div className="relative">
@@ -77,13 +77,13 @@ export const RegisterPage: React.FC = () => {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="example@mail.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block font-semibold text-slate-300 mb-1">
               Parol
             </label>
             <div className="relative">
@@ -94,13 +94,13 @@ export const RegisterPage: React.FC = () => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block font-semibold text-slate-300 mb-1">
               Parolni tasdiqlang
             </label>
             <div className="relative">
@@ -111,23 +111,23 @@ export const RegisterPage: React.FC = () => {
                 value={confirmPass}
                 onChange={e => setConfirmPass(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-lg transition"
+            className="w-full py-3.5 rounded-xl bg-[#F59E0B] hover:bg-amber-400 text-[#0F172A] font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#F59E0B]/20 transition"
           >
             <span>Ro'yxatdan o'tish</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
-        <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div className="text-center text-xs text-slate-400 pt-2 border-t border-slate-700/80">
           <span>Allaqachon hisobingiz bormi? </span>
-          <Link to="/login" className="font-semibold text-amber-600 dark:text-amber-400 hover:underline">
+          <Link to="/login" className="font-semibold text-[#F59E0B] hover:underline">
             Kirish
           </Link>
         </div>

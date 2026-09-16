@@ -80,8 +80,8 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 dark:bg-[#0F172A]/90 glass-nav shadow-sm border-b border-slate-200/50 dark:border-slate-800/60 py-3'
-            : 'bg-transparent py-4'
+            ? 'bg-[#0F172A]/95 glass-nav shadow-lg border-b border-slate-800/80 py-3'
+            : 'bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-800/40 py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -500,7 +500,7 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-lg">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0F172A]/95 glass-nav border-t border-slate-800 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl">
         <div className="flex items-center justify-around">
           <Link
             to="/"
