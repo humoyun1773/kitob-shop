@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Printer, Download, BookOpen, CheckCircle, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Order } from '../../types/order';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -18,8 +19,12 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ order, onClose }) =>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
-      <div 
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto" onClick={onClose}>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 16 }}
+        transition={{ type: "spring", stiffness: 420, damping: 28 }}
         className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 my-8"
         onClick={e => e.stopPropagation()}
       >
@@ -174,7 +179,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ order, onClose }) =>
             <p>Xaridingiz uchun tashakkur! Har qanday savollar bo'yicha info@kitobshop.uz ga murojaat qiling.</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

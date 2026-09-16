@@ -25,6 +25,7 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useNotifications } from '../../context/NotificationContext';
 import { Language } from '../../i18n/translations';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -46,6 +47,9 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -57,6 +61,7 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsSearchOpen(false);
+    setIsLangOpen(false);
     setIsNotifOpen(false);
     setIsProfileOpen(false);
   }, [location.pathname]);
@@ -72,11 +77,17 @@ export const Navbar: React.FC = () => {
   const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'UZ', label: "O'zbekcha", flag: '🇺🇿' },
     { code: 'RU', label: 'Русский', flag: '🇷🇺' },
-    { code: 'EN', label: 'English', flag: '🇺🇸' },
+    { code: 'EN', label: 'English', flag: '🇬🇧' },
   ];
 
   return (
     <>
+      {/* Top Scroll Reading Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#F59E0B] via-amber-400 to-[#d97706] origin-left z-50 shadow-sm"
+        style={{ scaleX }}
+      />
+
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
@@ -164,36 +175,44 @@ export const Navbar: React.FC = () => {
                   <Globe className="w-5 h-5" />
                   <span className="text-xs font-semibold uppercase">{language}</span>
                 </button>
-                {isLangOpen && (
-                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-[#1E293B] rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 z-50 animate-in fade-in">
-                    {languages.map(l => (
-                      <button
-                        key={l.code}
-                        onClick={() => {
-                          setLanguage(l.code);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full text-left px-3 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-50 dark:hover:bg-slate-800 transition ${
-                          language === l.code
-                            ? 'text-amber-600 dark:text-amber-400 font-semibold'
-                            : 'text-slate-700 dark:text-slate-300'
-                        }`}
-                      >
-                        <span className="flex items-center gap-2">
-                          <span>{l.flag}</span>
-                          <span>{l.label}</span>
-                        </span>
-                        {language === l.code && <Check className="w-3.5 h-3.5 text-amber-500" />}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {isLangOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="absolute right-0 mt-2 w-36 bg-white dark:bg-[#1E293B] rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 z-50 origin-top-right"
+                    >
+                      {languages.map(l => (
+                        <button
+                          key={l.code}
+                          onClick={() => {
+                            setLanguage(l.code);
+                            setIsLangOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-50 dark:hover:bg-slate-800 transition ${
+                            language === l.code
+                              ? 'text-amber-600 dark:text-amber-400 font-semibold'
+                              : 'text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            <span>{l.flag}</span>
+                            <span>{l.label}</span>
+                          </span>
+                          {language === l.code && <Check className="w-3.5 h-3.5 text-amber-500" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Theme Toggle */}
               <button
                 onClick={() => setTheme(isDark ? 'light' : 'dark')}
-                className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition"
+                className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition active:rotate-180"
                 title="Mavzuni almashtirish"
               >
                 {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
@@ -207,69 +226,84 @@ export const Navbar: React.FC = () => {
                   title="Xabarlar"
                 >
                   <Bell className="w-5 h-5" />
-                  {unreadCount > 0 && (
-                    <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse">
-                      {unreadCount}
-                    </span>
-                  )}
+                  <AnimatePresence>
+                    {unreadCount > 0 && (
+                      <motion.span
+                        key="unread-badge"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        className="absolute top-1.5 right-1.5 w-4 h-4 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse"
+                      >
+                        {unreadCount}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </button>
-                {isNotifOpen && (
-                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 z-50">
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-                      <div className="flex items-center gap-2">
-                        <Bell className="w-4 h-4 text-amber-500" />
-                        <h4 className="font-semibold text-sm text-slate-900 dark:text-white">Bildirishnomalar</h4>
+                <AnimatePresence>
+                  {isNotifOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 z-50 origin-top-right"
+                    >
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-2">
+                          <Bell className="w-4 h-4 text-amber-500" />
+                          <h4 className="font-semibold text-sm text-slate-900 dark:text-white">Bildirishnomalar</h4>
+                          {unreadCount > 0 && (
+                            <span className="px-1.5 py-0.5 text-[10px] bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 rounded-full font-bold">
+                              {unreadCount} yangi
+                            </span>
+                          )}
+                        </div>
                         {unreadCount > 0 && (
-                          <span className="px-1.5 py-0.5 text-[10px] bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 rounded-full font-bold">
-                            {unreadCount} yangi
-                          </span>
+                          <button
+                            onClick={markAllAsRead}
+                            className="text-xs text-amber-600 dark:text-amber-400 hover:underline"
+                          >
+                            O'qilgan deb belgilash
+                          </button>
                         )}
                       </div>
-                      {unreadCount > 0 && (
-                        <button
-                          onClick={markAllAsRead}
-                          className="text-xs text-amber-600 dark:text-amber-400 hover:underline"
-                        >
-                          O'qilgan deb belgilash
-                        </button>
-                      )}
-                    </div>
-                    <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-72 overflow-y-auto my-2">
-                      {notifications.length === 0 ? (
-                        <p className="text-xs text-slate-500 py-6 text-center">Bildirishnomalar mavjud emas</p>
-                      ) : (
-                        notifications.map(n => (
-                          <div
-                            key={n.id}
-                            onClick={() => markAsRead(n.id)}
-                            className={`py-3 px-2 rounded-lg cursor-pointer transition ${
-                              n.isRead
-                                ? 'opacity-70 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                                : 'bg-amber-50/60 dark:bg-amber-950/20'
-                            }`}
-                          >
-                            <div className="flex items-start justify-between gap-2">
-                              <h5 className="text-xs font-semibold text-slate-900 dark:text-slate-100">{n.title}</h5>
-                              {!n.isRead && <span className="w-2 h-2 rounded-full bg-amber-500 mt-1 flex-shrink-0" />}
+                      <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-72 overflow-y-auto my-2">
+                        {notifications.length === 0 ? (
+                          <p className="text-xs text-slate-500 py-6 text-center">Bildirishnomalar mavjud emas</p>
+                        ) : (
+                          notifications.map(n => (
+                            <div
+                              key={n.id}
+                              onClick={() => markAsRead(n.id)}
+                              className={`py-3 px-2 rounded-lg cursor-pointer transition ${
+                                n.isRead
+                                  ? 'opacity-70 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                                  : 'bg-amber-50/60 dark:bg-amber-950/20'
+                              }`}
+                            >
+                              <div className="flex items-start justify-between gap-2">
+                                <h5 className="font-semibold text-xs text-slate-900 dark:text-white">{n.title}</h5>
+                                <span className="text-[10px] text-slate-400 flex-shrink-0">
+                                  {new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </span>
+                              </div>
+                              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">{n.message}</p>
                             </div>
-                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">{n.message}</p>
-                            <span className="text-[10px] text-slate-400 mt-1.5 block">
-                              {new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                          </div>
-                        ))
+                          ))
+                        )}
+                      </div>
+                      {notifications.length > 0 && (
+                        <Link
+                          to="/orders"
+                          className="block text-center text-xs font-semibold text-amber-600 dark:text-amber-400 pt-2 hover:underline"
+                        >
+                          Barcha buyurtmalarni ko'rish →
+                        </Link>
                       )}
-                    </div>
-                    {user && (
-                      <Link
-                        to="/orders"
-                        className="block text-center text-xs font-semibold text-amber-600 dark:text-amber-400 pt-2 hover:underline"
-                      >
-                        Barcha buyurtmalarni ko'rish →
-                      </Link>
-                    )}
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Wishlist Link */}
@@ -279,25 +313,43 @@ export const Navbar: React.FC = () => {
                 title="Saralanganlar"
               >
                 <Heart className="w-5 h-5" />
-                {wishlist.length > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                    {wishlist.length}
-                  </span>
-                )}
+                <AnimatePresence>
+                  {wishlist.length > 0 && (
+                    <motion.span
+                      key="wishlist-badge"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                      className="absolute top-1.5 right-1.5 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center"
+                    >
+                      {wishlist.length}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </Link>
 
               {/* Cart Drawer Trigger */}
               <button
                 onClick={openCart}
-                className="p-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:scale-105 transition transform relative shadow-md"
+                className="p-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:scale-105 transition transform relative shadow-md active:scale-95"
                 title="Savatcha"
               >
                 <ShoppingBag className="w-5 h-5" />
-                {totalItemsCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-sm">
-                    {totalItemsCount}
-                  </span>
-                )}
+                <AnimatePresence>
+                  {totalItemsCount > 0 && (
+                    <motion.span
+                      key={`cart-${totalItemsCount}`}
+                      initial={{ scale: 0.3, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      className="absolute -top-1 -right-1 w-5 h-5 bg-[#F59E0B] text-slate-950 text-xs font-extrabold rounded-full flex items-center justify-center shadow-md border-2 border-white dark:border-[#0F172A]"
+                    >
+                      {totalItemsCount}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </button>
 
               {/* User Profile / Admin Menu */}
@@ -323,8 +375,15 @@ export const Navbar: React.FC = () => {
                   </Link>
                 )}
 
-                {isProfileOpen && user && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50">
+                <AnimatePresence>
+                  {isProfileOpen && user && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50 origin-top-right"
+                    >
                     <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
                       <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
                       <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
@@ -376,23 +435,31 @@ export const Navbar: React.FC = () => {
                       <LogOut className="w-4 h-4 text-rose-500" />
                       {t.nav.logout}
                     </button>
-                  </div>
+                  </motion.div>
                 )}
-              </div>
-
-              {/* Mobile menu toggle */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg lg:hidden hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition"
-              >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
+              </AnimatePresence>
             </div>
-          </div>
 
-          {/* Quick Search Slide-down */}
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg lg:hidden hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition active:scale-95"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Quick Search Slide-down */}
+        <AnimatePresence>
           {isSearchOpen && (
-            <div className="mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800 animate-in fade-in">
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="overflow-hidden mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800"
+            >
               <form onSubmit={handleSearchSubmit} className="relative">
                 <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -448,13 +515,21 @@ export const Navbar: React.FC = () => {
                   Psychology
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
+      </div>
 
-        {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 px-6 py-4 mt-3 shadow-xl animate-in slide-in-from-top-4">
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="overflow-hidden lg:hidden bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 px-6 py-4 mt-3 shadow-xl"
+          >
             <div className="flex flex-col gap-3">
               <Link
                 to="/"
@@ -495,8 +570,9 @@ export const Navbar: React.FC = () => {
                 </Link>
               )}
             </div>
-          </div>
+          </motion.div>
         )}
+      </AnimatePresence>
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}

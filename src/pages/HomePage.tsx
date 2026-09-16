@@ -13,12 +13,33 @@ import {
   CheckCircle2,
   ChevronRight
 } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
 import { useBooks } from '../context/BookContext';
 import { useLanguage } from '../context/LanguageContext';
 import { BookCard } from '../components/books/BookCard';
 import { QuickViewModal } from '../components/common/QuickViewModal';
 import { SEO } from '../components/common/SEO';
 import { Book, BookCategory } from '../types/book';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
 
 export const HomePage: React.FC = () => {
   const { books } = useBooks();
@@ -57,74 +78,85 @@ export const HomePage: React.FC = () => {
       {/* 2. CINEMATIC HERO SECTION (Requirement #2, #41) */}
       <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-32 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent dark:from-[#0F172A] dark:via-[#1E293B]/40 dark:to-[#0F172A]">
         {/* Subtle background glow elements */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/20 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/20 via-amber-400/10 to-transparent blur-3xl pointer-events-none rounded-full animate-ambient-glow" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-amber-700 dark:text-[#F59E0B] text-xs font-semibold shadow-sm">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="lg:col-span-7 space-y-6 text-center lg:text-left"
+            >
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-amber-700 dark:text-[#F59E0B] text-xs font-semibold shadow-sm">
                 <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                 <span>{t.hero.badge}</span>
-              </div>
+              </motion.div>
 
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+              <motion.h1 variants={itemVariants} className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                 {t.hero.title1}{' '}
                 <span className="bg-gradient-to-r from-[#F59E0B] via-amber-400 to-[#d97706] bg-clip-text text-transparent italic">
                   {t.hero.titleHighlight}
                 </span>
-              </h1>
+              </motion.h1>
 
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <motion.p variants={itemVariants} className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
                 {t.hero.subtitle}
-              </p>
+              </motion.p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                 <Link
                   to="/books"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#d97706] hover:from-[#d97706] hover:to-[#F59E0B] text-[#0F172A] font-bold text-sm shadow-xl shadow-[#F59E0B]/20 hover:shadow-2xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#d97706] hover:from-[#d97706] hover:to-[#F59E0B] text-[#0F172A] font-bold text-sm shadow-xl shadow-[#F59E0B]/20 hover:shadow-2xl transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group relative overflow-hidden"
                 >
-                  <span>{t.hero.exploreBtn}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+                  <span className="relative z-10">{t.hero.exploreBtn}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 </Link>
 
                 <Link
                   to="/books?category=Classics"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-[#161F36] hover:border-[#F59E0B]/50 transition flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-[#161F36] hover:border-[#F59E0B]/50 transition flex items-center justify-center gap-2 shadow-sm transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <BookOpen className="w-4 h-4 text-[#F59E0B]" />
                   <span>{t.hero.browseCollection}</span>
                 </Link>
-              </div>
+              </motion.div>
 
               {/* Badges / Stats */}
-              <div className="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 grid grid-cols-3 gap-4 text-center lg:text-left">
-                <div>
+              <motion.div variants={itemVariants} className="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 grid grid-cols-3 gap-4 text-center lg:text-left">
+                <div className="hover:scale-105 transition-transform">
                   <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">10,000+</h4>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Kitoblar javonda</p>
                 </div>
-                <div>
+                <div className="hover:scale-105 transition-transform">
                   <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">50,000+</h4>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Mamnun kitobxon</p>
                 </div>
-                <div>
+                <div className="hover:scale-105 transition-transform">
                   <h4 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">24/7</h4>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Tez yetkazib berish</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right: Floating 3D Book Visuals (Requirement #41) */}
-            <div className="lg:col-span-5 relative flex justify-center items-center py-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="lg:col-span-5 relative flex justify-center items-center py-6"
+            >
               <div className="relative w-full max-w-sm sm:max-w-md h-[420px] flex items-center justify-center">
                 {/* Decorative circle glow */}
                 <div className="absolute w-72 h-72 rounded-full border border-amber-500/20 bg-amber-500/5 animate-pulse" />
 
                 {/* Book 1 - Atomic Habits (Center floating) */}
-                <div className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-4">
-                  <div className="w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-slate-800/80 transform -rotate-3 hover:rotate-0 transition">
+                <div className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-4 cursor-pointer">
+                  <div className="w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-slate-700/80 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                     <img
                       src={books[0]?.coverImage || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80'}
                       alt="Atomic Habits"
@@ -138,7 +170,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Book 2 - Psychology of Money (Floating Left) */}
-                <div className="absolute -left-2 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium">
+                <div className="absolute -left-2 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium cursor-pointer">
                   <div className="w-36 sm:w-40 rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
                       src={books[1]?.coverImage || 'https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=800&q=80'}
@@ -149,7 +181,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Book 3 - O'tkan Kunlar (Floating Right) */}
-                <div className="absolute -right-2 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast">
+                <div className="absolute -right-2 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast cursor-pointer">
                   <div className="w-36 sm:w-40 rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
                       src={books[2]?.coverImage || 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=800&q=80'}
@@ -159,7 +191,7 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -187,21 +219,24 @@ export const HomePage: React.FC = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {categories.map(c => (
-            <button
+            <motion.button
               key={c.name}
+              whileHover={{ scale: 1.04, y: -4 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               onClick={() => navigate(`/books?category=${encodeURIComponent(c.name)}`)}
-              className={`p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-br ${c.bg} text-left transition-all duration-300 hover:-translate-y-1 shadow-sm flex flex-col justify-between group`}
+              className={`p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-br ${c.bg} text-left transition-all duration-300 shadow-sm flex flex-col justify-between group`}
             >
-              <div className="text-3xl mb-3 group-hover:scale-110 transition transform">{c.icon}</div>
+              <div className="text-3xl mb-3 group-hover:scale-125 transition-transform duration-300">{c.icon}</div>
               <div>
-                <h4 className="font-serif font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 transition">
+                <h4 className="font-serif font-bold text-sm text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition">
                   {c.label}
                 </h4>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                   {c.count} ta asar
                 </p>
               </div>
-            </button>
+            </motion.button>
           ))}
         </div>
       </section>

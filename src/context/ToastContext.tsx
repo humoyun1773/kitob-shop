@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { CheckCircle2, XCircle, AlertTriangle, Info, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
 
@@ -39,6 +40,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       {children}
       {/* Toast container - positioned at top center */}
       <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] flex flex-col items-center gap-2.5 pointer-events-none w-full max-w-md px-4">
+        <AnimatePresence mode="popLayout">
         {toasts.map(toast => {
           let Icon = CheckCircle2;
           let iconBg = 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30';
@@ -71,9 +73,14 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           }
 
           return (
-            <div
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: -24, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.92, transition: { duration: 0.18 } }}
+              transition={{ type: "spring", stiffness: 450, damping: 30 }}
               key={toast.id}
-              className={`pointer-events-auto w-full relative overflow-hidden backdrop-blur-xl bg-white/85 dark:bg-[#0F172A]/90 rounded-2xl p-3.5 sm:p-4 shadow-[0_16px_40px_rgba(15,23,42,0.14)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.55)] border ${borderGlow} flex items-center justify-between gap-3 toast-slide-down`}
+              className={`pointer-events-auto w-full relative overflow-hidden backdrop-blur-xl bg-white/90 dark:bg-[#0F172A]/95 rounded-2xl p-3.5 sm:p-4 shadow-[0_16px_40px_rgba(15,23,42,0.16)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.65)] border ${borderGlow} flex items-center justify-between gap-3`}
             >
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 <div className={`w-9 h-9 rounded-xl border flex items-center justify-center flex-shrink-0 ${iconBg}`}>
@@ -91,7 +98,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
               <button
                 onClick={() => removeToast(toast.id)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition flex-shrink-0"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition flex-shrink-0 active:scale-90"
                 aria-label="Yopish"
               >
                 <X className="w-4 h-4" />
@@ -104,9 +111,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                   style={{ animation: 'toastProgress 4s linear forwards' }}
                 />
               </div>
-            </div>
+            </motion.div>
           );
         })}
+        </AnimatePresence>
       </div>
     </ToastContext.Provider>
   );

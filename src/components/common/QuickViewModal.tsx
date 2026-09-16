@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, Star, Heart, ShoppingBag, Check, ShieldCheck, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Book } from '../../types/book';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
@@ -39,8 +40,12 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-      <div 
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 16 }}
+        transition={{ type: "spring", stiffness: 420, damping: 28 }}
         className="relative w-full max-w-3xl bg-white dark:bg-[#1E293B] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
@@ -195,7 +200,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Heart, ShoppingBag, Eye, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Book } from '../../types/book';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
@@ -56,10 +57,15 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      whileHover={{ y: -6 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white dark:bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/90 dark:border-slate-700/70 hover:border-[#F59E0B] dark:hover:border-[#F59E0B]/60 shadow-sm hover:shadow-xl dark:shadow-md dark:hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+      className="group relative bg-white dark:bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/90 dark:border-slate-700/70 hover:border-[#F59E0B] dark:hover:border-[#F59E0B]/60 shadow-sm hover:shadow-xl dark:shadow-md dark:hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
     >
       {/* Top Cover Image Container */}
       <div className="relative aspect-[3/4] w-full rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-2 sm:mb-3.5 shadow-inner">
@@ -94,18 +100,24 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
           )}
         </div>
 
+        {/* Shine sweep reflection on hover */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+          <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 dark:via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out" />
+        </div>
+
         {/* Wishlist Button */}
-        <button
+        <motion.button
+          whileTap={{ scale: 1.35 }}
           onClick={handleWishlistClick}
-          className={`absolute top-2.5 right-2.5 p-2 rounded-full backdrop-blur-md transition-all duration-200 z-20 ${
+          className={`absolute top-2.5 right-2.5 p-2 rounded-full backdrop-blur-md transition-colors duration-200 z-20 ${
             inWishlist
-              ? 'bg-rose-500 text-white shadow-md scale-110'
-              : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-900 hover:text-rose-500 hover:scale-105'
+              ? 'bg-rose-500 text-white shadow-md'
+              : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-900 hover:text-rose-500 shadow-sm'
           }`}
           title={inWishlist ? "Saralanganlardan o'chirish" : "Saralanganlarga qo'shish"}
         >
           <Heart className={`w-4 h-4 ${inWishlist ? 'fill-white' : ''}`} />
-        </button>
+        </motion.button>
 
         {/* Quick View Button Hover Overlay */}
         <div
@@ -115,7 +127,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
         >
           <button
             onClick={handleQuickViewClick}
-            className="px-3.5 py-2 rounded-xl bg-white/95 text-slate-900 font-semibold text-xs shadow-lg hover:bg-white flex items-center gap-1.5 transform hover:scale-105 transition"
+            className="px-3.5 py-2 rounded-xl bg-white/95 text-slate-900 font-semibold text-xs shadow-lg hover:bg-white flex items-center gap-1.5 transform hover:scale-105 transition active:scale-95"
           >
             <Eye className="w-3.5 h-3.5" />
             <span>{t.bookCard.quickView}</span>
@@ -172,7 +184,9 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
             </div>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.93 }}
             onClick={handleAddToCart}
             disabled={book.stock <= 0}
             className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
@@ -197,9 +211,9 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
                 </span>
               </>
             )}
-          </button>
+          </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

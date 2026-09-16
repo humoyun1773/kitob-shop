@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingBag, Tag } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useToast } from '../../context/ToastContext';
@@ -48,15 +49,24 @@ export const CartDrawer: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden animate-in fade-in">
+    <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={closeCart}
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
-        <div className="w-screen max-w-md bg-white dark:bg-[#0F172A] shadow-2xl border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between animate-in slide-in-from-right duration-300">
+        <motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: "spring", stiffness: 350, damping: 32 }}
+          className="w-screen max-w-md bg-white dark:bg-[#0F172A] shadow-2xl border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between"
+        >
           
           {/* Header */}
           <div className="p-5 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
@@ -247,7 +257,7 @@ export const CartDrawer: React.FC = () => {
               </button>
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
