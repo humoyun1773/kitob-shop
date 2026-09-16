@@ -26,6 +26,7 @@ import { useWishlist } from '../../context/WishlistContext';
 import { useNotifications } from '../../context/NotificationContext';
 import { Language } from '../../i18n/translations';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -42,6 +43,8 @@ export const Navbar: React.FC = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  useBodyScrollLock(isMobileMenuOpen);
 
   const navigate = useNavigate();
   const location = useLocation();

@@ -3,6 +3,7 @@ import { X, Printer, Download, BookOpen, CheckCircle, ShieldCheck } from 'lucide
 import { motion } from 'framer-motion';
 import { Order } from '../../types/order';
 import { useLanguage } from '../../context/LanguageContext';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface ReceiptModalProps {
   order: Order | null;
@@ -11,6 +12,8 @@ interface ReceiptModalProps {
 
 export const ReceiptModal: React.FC<ReceiptModalProps> = ({ order, onClose }) => {
   const { t } = useLanguage();
+
+  useBodyScrollLock(!!order);
 
   if (!order) return null;
 

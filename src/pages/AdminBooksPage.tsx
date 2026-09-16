@@ -14,6 +14,7 @@ import {
 import { useBooks } from '../context/BookContext';
 import { useToast } from '../context/ToastContext';
 import { Book, BookCategory, BookFormat } from '../types/book';
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 
 export const AdminBooksPage: React.FC = () => {
   const { books, addBook, updateBook, deleteBook } = useBooks();
@@ -23,6 +24,8 @@ export const AdminBooksPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBookId, setEditingBookId] = useState<string | null>(null);
+
+  useBodyScrollLock(isModalOpen);
 
   // Form State
   const initialFormData = {

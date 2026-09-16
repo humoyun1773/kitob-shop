@@ -7,6 +7,7 @@ import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface QuickViewModalProps {
   book: Book | null;
@@ -19,6 +20,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
   const { addToCart } = useCart();
   const { showToast } = useToast();
   const { t } = useLanguage();
+
+  useBodyScrollLock(!!book);
 
   if (!book) return null;
 

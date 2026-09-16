@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useToast } from '../../context/ToastContext';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -28,6 +29,8 @@ export const CartDrawer: React.FC = () => {
   const navigate = useNavigate();
 
   const [couponInput, setCouponInput] = useState('');
+
+  useBodyScrollLock(isOpen);
 
   if (!isOpen) return null;
 

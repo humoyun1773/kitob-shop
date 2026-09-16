@@ -16,6 +16,7 @@ import { useNotifications } from '../context/NotificationContext';
 import { useToast } from '../context/ToastContext';
 import { Order, OrderStatus } from '../types/order';
 import { ReceiptModal } from '../components/orders/ReceiptModal';
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 
 export const AdminOrdersPage: React.FC = () => {
   const { orders, updateOrderStatus } = useOrders();
@@ -26,6 +27,8 @@ export const AdminOrdersPage: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>('');
   const [selectedOrderDetails, setSelectedOrderDetails] = useState<Order | null>(null);
   const [selectedReceiptOrder, setSelectedReceiptOrder] = useState<Order | null>(null);
+
+  useBodyScrollLock(!!selectedOrderDetails || !!selectedReceiptOrder);
 
   const statuses: OrderStatus[] = [
     'Order placed',

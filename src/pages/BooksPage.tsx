@@ -8,6 +8,7 @@ import { BookFilterSidebar, FilterState } from '../components/books/BookFilterSi
 import { QuickViewModal } from '../components/common/QuickViewModal';
 import { SEO } from '../components/common/SEO';
 import { Book, BookCategory } from '../types/book';
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 
 export const BooksPage: React.FC = () => {
   const { books } = useBooks();
@@ -16,6 +17,8 @@ export const BooksPage: React.FC = () => {
 
   const [selectedBookForQuickView, setSelectedBookForQuickView] = useState<Book | null>(null);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  useBodyScrollLock(isMobileFilterOpen);
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
   const initialCategory = searchParams.get('category') || '';
