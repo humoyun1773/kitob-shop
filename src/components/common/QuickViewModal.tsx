@@ -41,7 +41,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ book, onClose })
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
       <div 
-        className="relative w-full max-w-3xl bg-white dark:bg-[#181c24] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+        className="relative w-full max-w-3xl bg-white dark:bg-[#1E293B] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Close Button */}

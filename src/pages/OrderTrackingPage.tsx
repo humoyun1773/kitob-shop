@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, FileText, RefreshCw, ShoppingBag } from 'lucide-react';
 import { useOrders } from '../context/OrderContext';
@@ -76,7 +76,7 @@ export const OrderTrackingPage: React.FC = () => {
       <OrderTrackingTimeline order={order} />
 
       {/* Purchased Books Mini Grid */}
-      <div className="mt-8 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+      <div className="mt-8 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
         <h4 className="font-serif font-bold text-base text-slate-900 dark:text-white mb-4">
           Buyurtmadagi kitoblar ({order.items.length})
         </h4>

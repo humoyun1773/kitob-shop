@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Truck, FileText, ArrowRight, ShoppingBag } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -26,7 +26,7 @@ export const OrderConfirmationPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-24 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div className="bg-white dark:bg-[#161a23] p-8 sm:p-12 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-xl space-y-6 animate-in zoom-in-95 duration-500">
+      <div className="bg-white dark:bg-[#1E293B] p-8 sm:p-12 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-xl space-y-6 animate-in zoom-in-95 duration-500">
         
         {/* Animated Check */}
         <div className="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-500 flex items-center justify-center mx-auto shadow-inner">

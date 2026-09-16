@@ -59,7 +59,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onQuickView }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-700/70 hover:border-[#F59E0B]/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+      className="group relative bg-white dark:bg-[#1E293B] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 border border-slate-200/90 dark:border-slate-700/70 hover:border-[#F59E0B] dark:hover:border-[#F59E0B]/60 shadow-sm hover:shadow-xl dark:shadow-md dark:hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
     >
       {/* Top Cover Image Container */}
       <div className="relative aspect-[3/4] w-full rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-2 sm:mb-3.5 shadow-inner">

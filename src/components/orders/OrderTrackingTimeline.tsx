@@ -29,7 +29,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({ or
   const currentIdx = allStages.findIndex(s => s.status === order.orderStatus);
 
   return (
-    <div className="bg-white dark:bg-[#161a23] p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+    <div className="bg-white dark:bg-[#1E293B] p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
         <div>
           <span className="text-xs uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400">

@@ -73,7 +73,7 @@ export const CartPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Cart items */}
-        <div className="lg:col-span-8 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm divide-y divide-slate-100 dark:divide-slate-800">
+        <div className="lg:col-span-8 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm divide-y divide-slate-100 dark:divide-slate-800">
           {items.map(item => (
             <div key={item.bookId} className="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -132,7 +132,7 @@ export const CartPage: React.FC = () => {
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-4 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+        <div className="lg:col-span-4 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
           <h3 className="font-serif font-bold text-base text-slate-900 dark:text-white pb-3 border-b border-slate-100 dark:border-slate-800">
             {t.checkout.orderSummary}
           </h3>

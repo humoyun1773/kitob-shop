@@ -13,11 +13,14 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem('kitob_theme') as Theme;
-    // Default to 'dark' (#0F172A To'q navy) with #F59E0B Oltin accents
-    return saved && saved === 'dark' ? saved : 'dark';
+    return saved && ['light', 'dark', 'system'].includes(saved) ? saved : 'dark';
   });
 
-  const [isDark, setIsDark] = useState<boolean>(true);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    const saved = localStorage.getItem('kitob_theme');
+    if (saved === 'light') return false;
+    return true;
+  });
 
   useEffect(() => {
     const root = document.documentElement;

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ShoppingBag, 
@@ -79,7 +79,7 @@ export const AdminOrdersPage: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-[#161a23] p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-white dark:bg-[#1E293B] p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -104,11 +104,11 @@ export const AdminOrdersPage: React.FC = () => {
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white dark:bg-[#161a23] rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#1E293B] rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="bg-slate-50 dark:bg-[#121620] border-b border-slate-200 dark:border-slate-800 text-slate-500 font-semibold uppercase">
+              <tr className="bg-slate-50 dark:bg-[#0F172A] border-b border-slate-200 dark:border-slate-700 text-slate-500 font-semibold uppercase">
                 <th className="py-3 px-4">Buyurtma ID</th>
                 <th className="py-3 px-4">Xaridor</th>
                 <th className="py-3 px-4">Kitoblar soni</th>
@@ -179,7 +179,7 @@ export const AdminOrdersPage: React.FC = () => {
       {/* Order Detail Modal */}
       {selectedOrderDetails && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-[#181c24] rounded-3xl p-6 sm:p-8 shadow-2xl my-8">
+          <div className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 shadow-2xl my-8 border border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <span className="text-xs uppercase font-bold text-amber-500 tracking-wider">Buyurtma Tafsiloti</span>

@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --bg-primary: #0F172A;
-    --bg-card: #1E293B;
-    --border-color: #334155;
+    --bg-primary: #F8FAFC;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
     --navy: #0F172A;
     --gold: #F59E0B;
   }

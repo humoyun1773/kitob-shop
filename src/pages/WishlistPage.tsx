@@ -64,7 +64,7 @@ export const WishlistPage: React.FC = () => {
           {wishlist.map(book => (
             <div
               key={book.id}
-              className="bg-white dark:bg-[#161a23] rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-lg transition"
+              className="bg-white dark:bg-[#1E293B] rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col justify-between hover:shadow-lg transition"
             >
               <div>
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 mb-3">

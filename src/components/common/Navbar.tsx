@@ -80,8 +80,8 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#0F172A]/95 glass-nav shadow-lg border-b border-slate-800/80 py-3'
-            : 'bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-800/40 py-4'
+            ? 'bg-white/95 dark:bg-[#0F172A]/95 glass-nav shadow-md border-b border-slate-200/80 dark:border-slate-800/80 py-3'
+            : 'bg-white/85 dark:bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/40 py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,7 +165,7 @@ export const Navbar: React.FC = () => {
                   <span className="text-xs font-semibold uppercase">{language}</span>
                 </button>
                 {isLangOpen && (
-                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-[#181c24] rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-1.5 z-50 animate-in fade-in">
+                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-[#1E293B] rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 z-50 animate-in fade-in">
                     {languages.map(l => (
                       <button
                         key={l.code}
@@ -214,7 +214,7 @@ export const Navbar: React.FC = () => {
                   )}
                 </button>
                 {isNotifOpen && (
-                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#181c24] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 z-50">
+                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 z-50">
                     <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                       <div className="flex items-center gap-2">
                         <Bell className="w-4 h-4 text-amber-500" />
@@ -324,7 +324,7 @@ export const Navbar: React.FC = () => {
                 )}
 
                 {isProfileOpen && user && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#181c24] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 py-2 z-50">
+                  <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50">
                     <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
                       <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
                       <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
@@ -401,7 +401,7 @@ export const Navbar: React.FC = () => {
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder={t.nav.searchPlaceholder}
-                  className="w-full pl-12 pr-28 py-3 rounded-xl bg-slate-100 dark:bg-[#181c24] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm shadow-inner"
+                  className="w-full pl-12 pr-28 py-3 rounded-xl bg-slate-100 dark:bg-[#1E293B] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm shadow-inner"
                 />
                 <button
                   type="submit"
@@ -454,7 +454,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white dark:bg-[#181c24] border-b border-slate-200 dark:border-slate-800 px-6 py-4 mt-3 shadow-xl animate-in slide-in-from-top-4">
+          <div className="lg:hidden bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 px-6 py-4 mt-3 shadow-xl animate-in slide-in-from-top-4">
             <div className="flex flex-col gap-3">
               <Link
                 to="/"
@@ -500,7 +500,7 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Bottom Navigation Bar (Requirement #4, #39) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0F172A]/95 glass-nav border-t border-slate-800 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 glass-nav border-t border-slate-200 dark:border-slate-800 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl transition-colors">
         <div className="flex items-center justify-around">
           <Link
             to="/"

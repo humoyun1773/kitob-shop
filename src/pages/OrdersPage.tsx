@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Truck, FileText, ArrowRight, RotateCcw, Clock, CheckCircle2 } from 'lucide-react';
 import { useOrders } from '../context/OrderContext';
@@ -43,7 +43,7 @@ export const OrdersPage: React.FC = () => {
       </div>
 
       {orders.length === 0 ? (
-        <div className="py-20 text-center bg-white dark:bg-[#161a23] rounded-3xl border border-slate-200 dark:border-slate-800 p-8">
+        <div className="py-20 text-center bg-white dark:bg-[#1E293B] rounded-3xl border border-slate-200 dark:border-slate-700/80 p-8">
           <ShoppingBag className="w-12 h-12 text-slate-400 mx-auto mb-3" />
           <h3 className="font-serif font-bold text-lg text-slate-900 dark:text-white">
             Siz hali buyurtma bermagansiz
@@ -57,7 +57,7 @@ export const OrdersPage: React.FC = () => {
           {orders.map(order => (
             <div
               key={order.id}
-              className="bg-white dark:bg-[#161a23] rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-md transition space-y-4"
+              className="bg-white dark:bg-[#1E293B] rounded-3xl border border-slate-200/80 dark:border-slate-700/80 p-6 shadow-sm hover:shadow-md transition space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
                 <div>

@@ -163,7 +163,7 @@ export const BooksPage: React.FC = () => {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="Qidiruv: Nomi, muallifi, janri, ISBN..."
-              className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-white dark:bg-[#161a23] border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm"
+              className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm"
             />
             {searchQuery && (
               <button
@@ -186,7 +186,7 @@ export const BooksPage: React.FC = () => {
             {/* Mobile filter button */}
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden px-3.5 py-2 rounded-xl bg-white dark:bg-[#161a23] border border-slate-200 dark:border-slate-800 font-semibold flex items-center gap-1.5"
+              className="lg:hidden px-3.5 py-2 rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 font-semibold flex items-center gap-1.5"
             >
               <SlidersHorizontal className="w-3.5 h-3.5 text-amber-500" />
               <span>{t.filter.title}</span>
@@ -198,7 +198,7 @@ export const BooksPage: React.FC = () => {
               <select
                 value={filters.sortBy}
                 onChange={e => setFilters({ ...filters, sortBy: e.target.value })}
-                className="py-1.5 px-3 rounded-xl bg-white dark:bg-[#161a23] border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                className="py-1.5 px-3 rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500"
               >
                 <option value="popular">{t.filter.sortPopular}</option>
                 <option value="newest">{t.filter.sortNewest}</option>
@@ -228,7 +228,7 @@ export const BooksPage: React.FC = () => {
           {/* Books Grid / Empty state */}
           <div className="lg:col-span-3">
             {filteredBooks.length === 0 ? (
-              <div className="py-20 text-center bg-white dark:bg-[#161a23] rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-8">
+              <div className="py-20 text-center bg-white dark:bg-[#1E293B] rounded-3xl border border-dashed border-slate-200 dark:border-slate-700 p-8">
                 <div className="w-16 h-16 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-500 flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 opacity-70" />
                 </div>
@@ -264,7 +264,7 @@ export const BooksPage: React.FC = () => {
       {/* Mobile Filters Modal */}
       {isMobileFilterOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm lg:hidden animate-in fade-in">
-          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-[#161a23] rounded-3xl p-6 shadow-2xl">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1E293B] rounded-3xl p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-serif font-bold text-base text-slate-900 dark:text-white">
                 {t.filter.title}

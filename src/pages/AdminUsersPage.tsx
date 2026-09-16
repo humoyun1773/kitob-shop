@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, Search, Mail, Phone, ShieldCheck, ShoppingBag } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -78,7 +78,7 @@ export const AdminUsersPage: React.FC = () => {
       </div>
 
       {/* Search */}
-      <div className="bg-white dark:bg-[#161a23] p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 mb-6 max-w-md">
+      <div className="bg-white dark:bg-[#1E293B] p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 mb-6 max-w-md">
         <div className="relative">
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -92,11 +92,11 @@ export const AdminUsersPage: React.FC = () => {
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-[#161a23] rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#1E293B] rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="bg-slate-50 dark:bg-[#121620] border-b border-slate-200 dark:border-slate-800 text-slate-500 font-semibold uppercase">
+              <tr className="bg-slate-50 dark:bg-[#0F172A] border-b border-slate-200 dark:border-slate-700 text-slate-500 font-semibold uppercase">
                 <th className="py-3 px-4">Foydalanuvchi</th>
                 <th className="py-3 px-4">Telefon</th>
                 <th className="py-3 px-4">Buyurtmalar</th>

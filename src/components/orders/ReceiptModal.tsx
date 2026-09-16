@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { X, Printer, Download, BookOpen, CheckCircle, ShieldCheck } from 'lucide-react';
 import { Order } from '../../types/order';
 import { useLanguage } from '../../context/LanguageContext';
@@ -20,7 +20,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ order, onClose }) =>
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
       <div 
-        className="relative w-full max-w-2xl bg-white dark:bg-[#181c24] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 my-8"
+        className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 my-8"
         onClick={e => e.stopPropagation()}
       >
         {/* Action controls (no print) */}

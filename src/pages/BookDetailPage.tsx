@@ -177,7 +177,7 @@ export const BookDetailPage: React.FC = () => {
                 transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
                 transition: 'transform 0.1s ease-out'
               }}
-              className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 dark:bg-[#161a23] shadow-2xl border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center p-4 sm:p-8 group cursor-zoom-in"
+              className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 dark:bg-[#1E293B] shadow-2xl border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-center p-4 sm:p-8 group cursor-zoom-in"
             >
               <img
                 src={activeImage || book.coverImage}
@@ -261,7 +261,7 @@ export const BookDetailPage: React.FC = () => {
             </div>
 
             {/* Price Box */}
-            <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#161a23] border border-slate-200/70 dark:border-slate-800/70 flex items-baseline justify-between">
+            <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#1E293B] border border-slate-200/70 dark:border-slate-700/70 flex items-baseline justify-between">
               <div>
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold block mb-1">
                   Xarid narxi:
@@ -398,7 +398,7 @@ export const BookDetailPage: React.FC = () => {
           </div>
 
           {/* Specifications Table */}
-          <div className="lg:col-span-5 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+          <div className="lg:col-span-5 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
             <h3 className="font-serif font-bold text-lg text-slate-900 dark:text-white mb-4">
               {t.detail.specifications}
             </h3>
@@ -461,7 +461,7 @@ export const BookDetailPage: React.FC = () => {
                   {book.reviews.map(rev => (
                     <div
                       key={rev.id}
-                      className="p-5 rounded-2xl bg-white dark:bg-[#161a23] border border-slate-200/70 dark:border-slate-800/70 space-y-2 shadow-sm"
+                      className="p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-slate-200/70 dark:border-slate-700/70 space-y-2 shadow-sm"
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-semibold text-xs text-slate-900 dark:text-white">
@@ -489,7 +489,7 @@ export const BookDetailPage: React.FC = () => {
             </div>
 
             {/* Write a Review Form */}
-            <div className="lg:col-span-5 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+            <div className="lg:col-span-5 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
               <h4 className="font-serif font-bold text-lg text-slate-900 dark:text-white mb-4">
                 {t.detail.writeReview}
               </h4>

@@ -20,7 +20,7 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-[#1E293B] p-8 rounded-3xl border border-slate-700/80 shadow-2xl space-y-6">
+      <div className="w-full max-w-md bg-white dark:bg-[#1E293B] p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-xl dark:shadow-2xl space-y-6">
         
         {/* Header */}
         <div className="text-center">
@@ -28,14 +28,14 @@ export const LoginPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F59E0B] via-amber-400 to-[#d97706] text-[#0F172A] flex items-center justify-center font-bold shadow-md">
               <BookOpen className="w-5 h-5" />
             </div>
-            <span className="font-serif font-bold text-2xl text-white">
+            <span className="font-serif font-bold text-2xl text-slate-900 dark:text-white">
               Kitob<span className="text-[#F59E0B]">Shop</span>
             </span>
           </Link>
-          <h2 className="font-serif font-bold text-xl text-white">
+          <h2 className="font-serif font-bold text-xl text-slate-900 dark:text-white">
             Tizimga kirish
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Buyurtmalaringiz va saralangan kitoblaringizni boshqaring
           </p>
         </div>
@@ -43,7 +43,7 @@ export const LoginPage: React.FC = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">
+            <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Elektron pochta
             </label>
             <div className="relative">
@@ -54,14 +54,14 @@ export const LoginPage: React.FC = () => {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="example@mail.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="block font-semibold text-slate-300">
+              <label className="block font-semibold text-slate-700 dark:text-slate-300">
                 Parol
               </label>
               <a href="#" onClick={e => { e.preventDefault(); showToast('Parolni tiklash havolasi emailingizga yuborildi', 'info'); }} className="text-[#F59E0B] hover:underline text-[11px]">
@@ -76,7 +76,7 @@ export const LoginPage: React.FC = () => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0F172A] border border-slate-700 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               />
             </div>
           </div>

@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative bg-[#0F172A] text-slate-300 pt-16 pb-28 lg:pb-12 border-t border-slate-800 transition-colors duration-200 overflow-hidden">
+    <footer className="relative bg-slate-100/90 dark:bg-[#0F172A] text-slate-600 dark:text-slate-300 pt-16 pb-28 lg:pb-12 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200 overflow-hidden">
       {/* Subtle ambient lighting effects */}
       <div className="absolute top-0 left-1/4 w-96 h-36 bg-[#F59E0B]/5 dark:bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-36 bg-[#F59E0B]/5 dark:bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />

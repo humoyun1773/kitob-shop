@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   DollarSign, 
@@ -72,7 +72,7 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Stats Cards (Requirement #21) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#161a23] border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E293B] border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
             <DollarSign className="w-7 h-7" />
           </div>
@@ -87,7 +87,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#161a23] border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E293B] border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
             <ShoppingBag className="w-7 h-7" />
           </div>
@@ -102,7 +102,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#161a23] border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E293B] border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
             <BookOpen className="w-7 h-7" />
           </div>
@@ -117,7 +117,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#161a23] border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E293B] border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center flex-shrink-0">
             <Users className="w-7 h-7" />
           </div>
@@ -136,7 +136,7 @@ export const AdminDashboardPage: React.FC = () => {
 
       {/* Visual Analytics Chart Simulation */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
-        <div className="lg:col-span-2 bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+        <div className="lg:col-span-2 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="font-serif font-bold text-base text-slate-900 dark:text-white">
@@ -173,7 +173,7 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
 
         {/* Category Breakdown */}
-        <div className="bg-white dark:bg-[#161a23] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+        <div className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
           <h3 className="font-serif font-bold text-base text-slate-900 dark:text-white mb-4">
             Kategoriyalar bo'yicha ulush
           </h3>
@@ -222,7 +222,7 @@ export const AdminDashboardPage: React.FC = () => {
       </div>
 
       {/* Recent Orders with LIVE STATUS UPDATE (Requirement #20, #23) */}
-      <div className="bg-white dark:bg-[#161a23] p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+      <div className="bg-white dark:bg-[#1E293B] p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
           <div>
             <h3 className="font-serif font-bold text-lg text-slate-900 dark:text-white">
