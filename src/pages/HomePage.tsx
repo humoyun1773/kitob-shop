@@ -155,22 +155,31 @@ export const HomePage: React.FC = () => {
                 <div className="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border border-amber-500/20 bg-amber-500/5 animate-pulse" />
 
                 {/* Book 1 - Atomic Habits (Center floating) */}
-                <div className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-2 sm:-translate-y-4 cursor-pointer">
+                <div 
+                  onClick={() => navigate('/books/book-atomic-habits')}
+                  className="absolute z-20 transform transition duration-500 hover:scale-105 animate-float-slow -translate-y-2 sm:-translate-y-4 cursor-pointer group"
+                >
                   <div className="w-36 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-slate-700/80 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                     <img
-                      src={books[0]?.coverImage || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80'}
+                      src={books[0]?.coverImage || 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg'}
                       alt="Atomic Habits"
                       className="w-full h-52 sm:h-72 object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg';
+                      }}
                     />
                     <div className="p-2 sm:p-3 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md">
-                      <p className="font-serif font-bold text-[11px] sm:text-xs text-slate-900 dark:text-white truncate">Atomic Habits</p>
+                      <p className="font-serif font-bold text-[11px] sm:text-xs text-slate-900 dark:text-white truncate group-hover:text-[#F59E0B] transition">Atomic Habits</p>
                       <p className="text-[9px] sm:text-[10px] text-amber-600 dark:text-amber-400 font-semibold">$14.99 • ⭐ 4.9</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Book 2 - Psychology of Money (Floating Left) */}
-                <div className="absolute -left-3 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium cursor-pointer">
+                <div 
+                  onClick={() => navigate('/books/book-psychology-of-money')}
+                  className="absolute -left-3 sm:left-2 z-10 transform -rotate-12 transition duration-500 hover:scale-105 animate-float-medium cursor-pointer"
+                >
                   <div className="w-28 sm:w-40 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
                       src={books[1]?.coverImage || 'https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=800&q=80'}
@@ -181,10 +190,13 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Book 3 - O'tkan Kunlar (Floating Right) */}
-                <div className="absolute -right-3 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast cursor-pointer">
+                <div 
+                  onClick={() => navigate('/books/book-otkan-kunlar')}
+                  className="absolute -right-3 sm:right-2 z-10 transform rotate-12 transition duration-500 hover:scale-105 animate-float-fast cursor-pointer"
+                >
                   <div className="w-28 sm:w-40 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-white/40 dark:border-slate-800">
                     <img
-                      src={books[2]?.coverImage || 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=800&q=80'}
+                      src={books[2]?.coverImage || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80'}
                       alt="O'tkan Kunlar"
                       className="w-full h-40 sm:h-56 object-cover"
                     />

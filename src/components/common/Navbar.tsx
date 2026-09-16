@@ -25,6 +25,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useNotifications } from '../../context/NotificationContext';
+import { useBooks } from '../../context/BookContext';
 import { Language } from '../../i18n/translations';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
@@ -37,6 +38,8 @@ export const Navbar: React.FC = () => {
   const { wishlist } = useWishlist();
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
 
+  const { books } = useBooks();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -45,7 +48,35 @@ export const Navbar: React.FC = () => {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  useBodyScrollLock(isMobileMenuOpen);
+  useBodyScrollLock(isMobileMenuOpen || isSearchOpen);
+
+  const searchResults = searchQuery.trim()
+    ? books.filter(b => 
+        b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.isbn.includes(searchQuery)
+      ).slice(0, 6)
+    : [];
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(prev => {
+          if (!prev) {
+            setTimeout(() => searchInputRef.current?.focus(), 50);
+          }
+          return !prev;
+        });
+      }
+      if (e.key === 'Escape') {
+        setIsSearchOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -454,75 +485,6 @@ export const Navbar: React.FC = () => {
             </button>
           </div>
         </div>
-
-        {/* Quick Search Slide-down */}
-        <AnimatePresence>
-          {isSearchOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, y: -10 }}
-              animate={{ opacity: 1, height: 'auto', y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="overflow-hidden mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800"
-            >
-              <form onSubmit={handleSearchSubmit} className="relative">
-                <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  placeholder={t.nav.searchPlaceholder}
-                  className="w-full pl-12 pr-28 py-3 rounded-xl bg-slate-100 dark:bg-[#1E293B] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm shadow-inner"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-lg transition"
-                >
-                  Qidirish
-                </button>
-              </form>
-              <div className="flex flex-wrap items-center gap-2 mt-2 px-1 text-xs text-slate-500">
-                <span>Ommabop qidiruvlar:</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('Atomic Habits');
-                    navigate('/books?search=Atomic Habits');
-                    setIsSearchOpen(false);
-                  }}
-                  className="hover:text-amber-500 underline"
-                >
-                  Atomic Habits
-                </button>
-                <span>•</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('Abdulla Qodiriy');
-                    navigate('/books?search=Abdulla Qodiriy');
-                    setIsSearchOpen(false);
-                  }}
-                  className="hover:text-amber-500 underline"
-                >
-                  Abdulla Qodiriy
-                </button>
-                <span>•</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('Psychology');
-                    navigate('/books?search=Psychology');
-                    setIsSearchOpen(false);
-                  }}
-                  className="hover:text-amber-500 underline"
-                >
-                  Psychology
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Mobile Navigation Drawer */}
@@ -704,6 +666,160 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* Spotlight Search Modal (Command-K style overlay, doesn't deform header or push content) */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 sm:px-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              onClick={() => setIsSearchOpen(false)}
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-md"
+            />
+
+            {/* Modal Dialog */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -16 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700/80 overflow-hidden z-10 flex flex-col max-h-[82vh]"
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Search Form Header */}
+              <form onSubmit={handleSearchSubmit} className="relative border-b border-slate-200/80 dark:border-slate-700/80 flex items-center p-3.5 sm:p-4 gap-3 bg-slate-50/50 dark:bg-[#0F172A]/50">
+                <Search className="w-5 h-5 text-[#F59E0B] flex-shrink-0" />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder="Kitob nomi, muallif yoki janr bo'yicha qidiring..."
+                  className="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm sm:text-base focus:outline-none"
+                  autoFocus
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition cursor-pointer"
+                    title="Tozalash"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+                <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md border border-slate-300 dark:border-slate-700">
+                  ESC
+                </kbd>
+                <button
+                  type="button"
+                  onClick={() => setIsSearchOpen(false)}
+                  className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-200/60 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition cursor-pointer"
+                  title="Yopish"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </form>
+
+              {/* Live Results or Suggestions Area */}
+              <div className="overflow-y-auto p-4 sm:p-5 space-y-4">
+                {searchQuery.trim() ? (
+                  searchResults.length > 0 ? (
+                    <div>
+                      <div className="flex items-center justify-between pb-2 mb-2 text-xs text-slate-500 font-semibold uppercase tracking-wider">
+                        <span>Topilgan kitoblar ({searchResults.length})</span>
+                        <span className="text-[11px] normal-case text-[#F59E0B]">Tanlash uchun bosing</span>
+                      </div>
+                      <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                        {searchResults.map(book => (
+                          <Link
+                            key={book.id}
+                            to={`/books/${book.id}`}
+                            onClick={() => setIsSearchOpen(false)}
+                            className="flex items-center justify-between py-2.5 px-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition group cursor-pointer"
+                          >
+                            <div className="flex items-center gap-3.5 min-w-0">
+                              <img
+                                src={book.coverImage}
+                                alt={book.title}
+                                className="w-10 h-14 object-cover rounded-lg shadow-sm flex-shrink-0"
+                              />
+                              <div className="min-w-0">
+                                <h4 className="font-serif font-bold text-sm text-slate-900 dark:text-white group-hover:text-[#F59E0B] transition truncate">
+                                  {book.title}
+                                </h4>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">
+                                  {book.author}
+                                </p>
+                                <span className="inline-block px-2 py-0.5 mt-1 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                                  {book.category}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="text-right flex-shrink-0 ml-4">
+                              <span className="font-mono font-bold text-sm text-slate-900 dark:text-white">
+                                ${book.price.toFixed(2)}
+                              </span>
+                              <div className="text-[11px] text-amber-500 font-semibold flex items-center justify-end gap-0.5 mt-0.5">
+                                ★ {book.rating}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleSearchSubmit}
+                        className="w-full mt-3 py-2.5 px-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-center text-xs font-bold text-[#F59E0B] hover:underline cursor-pointer"
+                      >
+                        Barcha natijalarni katalogda ko'rish →
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="py-12 text-center text-slate-500 dark:text-slate-400">
+                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">"{searchQuery}" bo'yicha hech narsa topilmadi</p>
+                      <p className="text-xs mt-1">Imlo xatolarini tekshiring yoki boshqa so'z bilan qidirib ko'ring</p>
+                    </div>
+                  )
+                ) : (
+                  <div>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                      Ommabop qidiruvlar:
+                    </h5>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        'Atomic Habits',
+                        'The Psychology of Money',
+                        'Abdulla Qodiriy',
+                        'Badiiy Adabiyot',
+                        'Biznes & Moliya',
+                        'Shaxsiy Rivojlanish'
+                      ].map(item => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => {
+                            setSearchQuery(item);
+                            navigate(`/books?search=${encodeURIComponent(item)}`);
+                            setIsSearchOpen(false);
+                          }}
+                          className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-[#F59E0B] hover:text-[#0F172A] dark:hover:bg-[#F59E0B] dark:hover:text-[#0F172A] transition cursor-pointer"
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
